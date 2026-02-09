@@ -1,31 +1,30 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <title>GunitaPH</title>
-    <link rel = "stylesheet" href = "../css/auth.css">
-  </head>
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
 
-  <body>
-    <main class="whole">
-      <div class = "box">
-        <h1 class = "logo">Gunita</h1>
-        <p class = "tagline">Maglakbay. Magkuwento. Mag-gunita.</p>
-
-        <form>
-          <label for = "username">Username</label>
-          <input type = "text" id = "username" placeholder="Input username">
-          
-          <label for = "password">Password</label>
-          <input type = "password" id = "password" placeholder="Input password">
-
-          <buttomn type="submit">Login</button>
-        </form>
-
-        <p class = "switch">
-          Don't have an account yet? <a href="register.html">Register</a>
-        </p>
-      </div>
-
+    <main class="layout">
+        <section class="left">
+            <h2>Already have an account?</h2>
+            <p>Log in and continue sharing your travel stories.</p>
+            <a href="login.html">
+                <button type="button">Login</button>
+            </a>
+        </section>
+        <section class="right">
+            <h1 class="logo">GunitaPH</h1>
+            <p class="tagline">Maglakbay. Magkuwento. Mag-gunita.</p>
+            <form>
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Choose a username">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Create a password">
+                <button type="submit">Register</button>
+            </form>
+        </section>
     </main>
-  </body>
+</body>
 </html>
