@@ -12,3 +12,6 @@ A forum-style web application focused on Philippine travel experiences.
  - HTML
  - CSS
 <!--- - Javascript -->
+
+## Extras
+ - Docs folder contains our design plans/drafts for the layout of GunitaPH Travel Forum.
