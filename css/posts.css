@@ -1,1 +1,27 @@
+.post
+{
+  background-color: #ffffff;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+}
 
+.post-title
+{
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.post-meta
+{
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.comment
+{
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
+  padding-left: 0.5rem;
+  border-left: 2px solid #ddd;
+}
