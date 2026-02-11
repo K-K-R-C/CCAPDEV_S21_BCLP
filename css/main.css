@@ -2,16 +2,33 @@
 *
 {
   margin: 0;
+  margin-left: 25px;
   padding: 0;
   box-sizing: border-box;
+}
+
+/* Theme Variables from Canvas */
+:root 
+{
+  --bg-main: #e5e3e3;
+  --container-bg: #ffffff;
+  --dark-container: #231f20;
+  --text-main: #7f7f7f;
+  --hover-link: #7096ba;
+  --hover-container: #486580;
+  --filter-bg: #cacaca;
+
+  --like-color: #486580;
+  --dislike-color: #9d4132;
+  --hashtag-color: #d79b54;
 }
 
 /* Base page style */
 body
 {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #f5f5f5;
-  color: #333;
+  background-color: var(--bg-main);
+  color: var(--text-main);
   line-height: 1.6;
 }
 
@@ -22,9 +39,44 @@ a
   color: inherit;
 }
 
+a:hover
+{
+  color: var(--hover-link);
+}
+
 .container
 {
   max-width: 1200px;
-  margin: 0 auto;
+  margin-top: 50px;
+  margin-left: 25px;
   padding: 1rem;
+}
+
+.feed 
+{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-left: 300px;
+
+  position: relative;
+  left: 25px;
+  top: -30px;
+}
+
+/* Logo */
+.logo
+{
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--dark-container);
+  margin-bottom: 1rem;
+
+  position: relative;
+  left: -25px;
+}
+
+.logo span
+{
+  color: var(--hover-link);
 }
