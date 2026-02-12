@@ -62,6 +62,12 @@
   margin-bottom: 12px;
 }
 
+.profile-location {
+  color: var(--text-main);
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
 .stats {
   display: flex;
   align-items: center;
@@ -201,6 +207,7 @@
   position: absolute;
   bottom: 10px;
   right: 10px;
+  z-index: 1;
 }
 
 /* Avatar Edit Section (Centered) */
