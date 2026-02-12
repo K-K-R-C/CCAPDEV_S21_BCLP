@@ -1,15 +1,129 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Profile</title>
+    <title>Gunita</title>
 
-    <link rel = "stylesheet" href = "../css/main.css">
-    <link rel = "stylesheet" href = "../css/sidebar.css">
-    <link rel = "stylesheet" href = "../css/posts.css">
-    <link rel = "stylesheet" href = "../css/profile.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/posts.css">
+
   </head>
 
   <body>
-    [anything here]
+    <div class="container">
+
+        <!-- Left Sidebar -->
+        <div class="left-sidebar">
+            <!-- Logo -->
+            <div class="logo">
+                <h1 class="name"><span>G</span>UNITA</h1>
+            </div>
+
+            <img src="../images/profile.jpg" class="profile-pic" alt="Profile Pic">
+            <h2><a href="profile.html" class="profile-link">batmeow</a></h2>
+            <p>@dlsu-pusa</p>
+            <button> <a href="index.html"><img src="../images/home-button.png" class="home-button" alt="Home"></a>Home</button> 
+            <button> <a href="create-post.html"><img src="../images/new-post-button.png" class="new-post-button" alt="New Post"></a>New Post</button>
+        </div>
+
+        <!-- CENTER COLUMN -->
+        <section class="center-col">
+
+          <!-- PROFILE HEADER CARD -->
+            <div class="card profile-header">
+              <div class="cover"></div>
+
+              <div class="profile-row">
+                <img src="../images/profile.jpg" alt="Profile Picture" class="avatar xl">
+
+                <div class="profile-meta">
+                  <h2 class="profile-name">batmeow</h2>
+                  <p class="profile-handle">@dlsu-pusa</p>
+
+                  <p class="stats">
+                    <strong>100k</strong> followers
+                    <span class="dot">•</span>
+                    <strong>1</strong> following
+                    <span class="dot">•</span>
+                    <strong>1</strong> posts
+                  </p>
+
+                  <p class="bio">
+                    Meow meow meow meow meow meow meow
+                  </p>
+                </div>
+
+                <div class="profile-actions">
+                  <a href="login.html" class="btn-link">
+                    <button type="button" class="dark-btn">Log out</button>
+                  </a>
+                  <button class="dark-btn">Edit profile</button>
+                </div>
+              </div>
+            </div>
+
+          <!-- POST CARD -->
+          <a href="post.html" class="post-link">
+              <article class="card post">
+                <div class="post-top">
+                  <div class="post-user">
+                    <div class="avatar small"></div>
+                    <span class="post-name">batmeow</span>
+                  </div>
+                  <span class="post-time">23 hours ago</span>
+                </div>
+
+                <div class="post-media">
+                  <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?q=80&w=1200&auto=format&fit=crop"
+                      alt="Post image" />
+                </div>
+              </article> 
+          </a>
+        </section>
+
+
+        <!-- Right Sidebar -->
+        <div class="right-sidebar">
+            <!-- Search Bar -->
+            <div class="searchbar">
+                <form>
+                    <img src="../images/search-icon.png" alt="Search" class="search-icon">
+                    <input type="text" placeholder="Search...">
+                </form>
+            </div>
+
+            <!-- Trending Section -->
+            <div class="trending">
+                <h3>Top 3 Trending</h3>
+                <ul>
+                    <li>#EntitledForeigners</li>
+                    <li>#ValentinesDay</li>
+                    <li>#HappySinglesDay</li>
+                </ul>
+            </div>
+
+            <!-- Filters Section -->
+            <div class="card filters">
+                <h3>Destination</h3>
+                <div class="filter-list">
+                <label><input type="checkbox" checked> Luzon</label>
+                <label><input type="checkbox"> Visayas</label>
+                <label><input type="checkbox"> Mindanao</label>
+                </div>
+
+                <h3 class="section-gap">Travel Style</h3>
+                <div class="filter-list">
+                <label><input type="checkbox" checked> Budget</label>
+                <label><input type="checkbox"> Family</label>
+                <label><input type="checkbox"> Backpacking</label>
+                <label><input type="checkbox"> Luxury</label>
+                <label><input type="checkbox"> Solo</label>
+                </div> 
+                
+                <button>Set Filters</button>
+          </div>
+
+    </div>
   </body>
 </html>
+
