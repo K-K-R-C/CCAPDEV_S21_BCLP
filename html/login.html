@@ -2,6 +2,7 @@
 <head>
     <title>GunitaPH</title>
     <link rel="stylesheet" href="../css/auth.css">
+    <script src="../js/main.js" defer></script>
 </head>
 <body>
     <main class="layout">
@@ -9,16 +10,16 @@
             <!---will be changed once we have a logo na-->
             <h1 class="logo">Gunita</h1>
             <p class="tagline">Maglakbay. Magkuwento. Mag-gunita.</p>
-            <form action = "index.html" method = "get">
+            <form>
                 <label for="username">Username</label>
-                <input type="text" id="username" placeholder="Enter username" required minlength = "1">
+                <input type="text" id="username" placeholder="Enter username">
                 <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Enter password" required minlength = "4">
-                <button type="submit">Login</button>
+                <input type="password" id="password" placeholder="Enter password">
+                <button type="button" id="loginButton">Login</button>
             </form>
         </section>
         <section class="right">
-            <h2>Don’t have an account yet?</h2>
+            <h2>Don't have an account yet?</h2>
             <p>Register now and start sharing your travel stories!</p>
             <a href="register.html"><button type="button">Register</button></a>
         </section>
