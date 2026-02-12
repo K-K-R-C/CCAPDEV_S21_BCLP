@@ -214,8 +214,7 @@ a:hover {
 }
 
 /* Lists */
-.right-sidebar .trending ul,
-.right-sidebar .filters ul {
+.right-sidebar .trending ul{
   list-style: none;
   padding: 0 !important;
   margin: 0;
@@ -225,12 +224,27 @@ a:hover {
   gap: 10px;
 }
 
-.right-sidebar .trending li,
-.right-sidebar .filters li {
+.right-sidebar .trending li {
   font-size: 14px;
   font-weight: 700;
   color: var(--text-main);
   margin: 0;
+}
+
+.right-sidebar .filter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.right-sidebar .filter-list label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-main);
 }
 
 /* Show more link */
