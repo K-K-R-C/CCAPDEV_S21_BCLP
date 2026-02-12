@@ -236,6 +236,8 @@ a:hover {
   flex-direction: column;
   gap: 10px;
   margin-bottom: 14px;
+  align-items: flex-start;
+  width: fit-content;
 }
 
 .right-sidebar .filter-list label {
@@ -245,6 +247,8 @@ a:hover {
   font-size: 14px;
   font-weight: 700;
   color: var(--text-main);
+  justify-content: flex-start;
+  width: fit-content;
 }
 
 /* Show more link */

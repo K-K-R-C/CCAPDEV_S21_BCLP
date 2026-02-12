@@ -1,14 +1,127 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Create-Post</title>
+      <title>Create Post - GunitaPH</title>
 
-    <link rel = "stylesheet" href = "../css/main.css">
-    <link rel = "stylesheet" href = "../css/sidebar.css">
-    <link rel = "stylesheet" href = "../css/posts.css">
+      <link rel = "stylesheet" href = "../css/main.css">
+      <link rel = "stylesheet" href = "../css/forms.css">
   </head>
 
   <body>
-    [anything here]
+      <div class="container">
+
+          <!-- Left Sidebar -->
+          <div class="left-sidebar">
+              <!-- Logo -->
+              <div class="logo">
+                  <h1 class="name"><span>G</span>UNITA</h1>
+              </div>
+
+              <img src="../images/profile.jpg" class="profile-pic" alt="Profile Pic">
+              <h2><a href="profile.html" class="profile-link">batmeow</a></h2>
+              <p>@dlsu-pusa</p>
+              <button> <a href="index.html"><img src="../images/home-button.png" class="home-button" alt="Home"></a>Home</button>
+              <button> <a href="create-post.html"><img src="../images/new-post-button.png" class="new-post-button" alt="New Post"></a>New Post</button>
+          </div>
+
+          <!-- Feed (for creating posts) -->
+          <div class="feed">
+
+              <!-- with blurry background -->
+              <div class="page-header">
+                  <h1>Share Your Memory</h1>
+                  <p>Tell us about your adventure!</p>
+              </div>
+
+              <!-- Centered post form -->
+              <div class="create-post">
+                  <form action = "#" method = "post" enctype = "multipart/form-data">
+                      <div class = "form-group">
+                          <label for = "title">Title</label>
+                          <input type = "text" id = "title" name = "title" placeholder = "Give your memory a title!" required>
+                      </div>
+
+                      <div class = "form-group">
+                          <label for = "location">Location </label>
+                          <input type = "text" id = "location" name = "location" placeholder = "Where was this?" required>
+                      </div>
+
+                      <div class = "form-group">
+                          <label for = "category">Category</label>
+                          <select id = "category" name = "category" required>
+                              <option value = "">Select a category</option>
+                              <option value = "beach">Beach</option>
+                              <option value = "mountains">Mountains</option>
+                              <option value = "food-trip">Food Trip</option>
+                              <option value = "city">City</option>
+                              <option value = "adventure">Adventure</option>
+                              <option value = "hidden-gems">Hidden Gems</option>
+                          </select>
+                      </div>
+
+                      <div class = "form-group">
+                          <label for = "photo">Upload Photo</label>
+
+                          <div class = "upload-box">
+                              <input type = "file" id = "photo" name = "photo" accept = "image/*" required>
+                              <p>Drag photo here or click to upload</p>
+                          </div>
+                      </div>
+
+                      <div class = "form-group">
+                          <label for = "description">Description</label>
+                          <textarea id = "description" name = "description" placeholder = "Share your story..." rows = "5" required></textarea>
+                      </div>
+
+                      <div class = "form-buttons">
+                          <button type = "button" class = "cancel-btn">Cancel</button>
+                          <button type = "submit" class = "post-btn">Post Memory</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+
+          <!-- Right Sidebar (same as for Homepage) -->
+          <div class = "right-sidebar">
+              <!-- Search Bar -->
+              <div class = "searchbar">
+                  <form>
+                      <img src = "../images/search-icon.png" alt = "Search" class = "search-icon">
+                      <input type = "text" placeholder = "Search...">
+                  </form>
+              </div>
+
+              <!-- Trending Section -->
+              <div class = "trending">
+                  <h3>Top 3 Trending</h3>
+
+                  <ul>
+                      <li>#EntitledForeigners</li>
+                      <li>#ValentinesDay</li>
+                      <li>#HappySinglesDay</li>
+                  </ul>
+              </div>
+
+              <!-- Filters Section -->
+              <div class = "filters">
+                  <h3>Destination</h3>
+                  <div class = "filter-list">
+                      <label><input type = "checkbox" checked> Luzon</label>
+                      <label><input type = "checkbox"> Visayas</label>
+                      <label><input type = "checkbox"> Mindanao</label>
+                  </div>
+
+                  <h3 class = "section-gap">Travel Style</h3>
+                  <div class = "filter-list">
+                      <label><input type = "checkbox" checked> Budget</label>
+                      <label><input type = "checkbox"> Family</label>
+                      <label><input type = "checkbox"> Backpacking</label>
+                      <label><input type = "checkbox"> Luxury</label>
+                      <label><input type = "checkbox"> Solo</label>
+                  </div>
+              </div>
+
+          </div>
+      </div>
   </body>
 </html>
