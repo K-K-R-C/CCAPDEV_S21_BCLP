@@ -1,148 +1,5 @@
-
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Theme Variables from Canvas */
-:root {
-  --bg-main: #e5e3e3;
-  --container-bg: #ffffff;
-  --dark-container: #231f20;
-  --text-main: #7f7f7f;
-  --hover-link: #7096ba;
-  --hover-container: #486580;
-  --filter-bg: #cacaca;
-  --like-color: #486580;
-  --dislike-color: #9d4132;
-  --hashtag-color: #d79b54;
-}
-
-/* Base page style */
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: var(--bg-main);
-  color: var(--text-main);
-  line-height: 1.6;
-}
-
-/* Links */
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-a:hover {
-  color: var(--hover-link);
-}
-
-.container {
-  max-width: 1200px;
-  margin: 50px auto 0;
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.feed {
-  flex: 1;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-/* Logo */
-.logo {
-  font-size: 20px;
-  font-weight: bold;
-  color: var(--dark-container);
-  margin: 0 auto 10px;
-  text-align: center;
-}
-
-.logo span {
-  color: var(--hover-link);
-}
-
 /*----------------------------------------------------------------------*/
-/* Left Sidebar Styles--------------------------------------------------*/
-/*----------------------------------------------------------------------*/
-.left-sidebar {
-  width: 250px;
-  flex-shrink: 0;
-  background-color: var(--container-bg);
-  padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  position: sticky;
-  top: 0;
-  height: fit-content;
-}
-
-.left-sidebar .profile-pic {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 10px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.left-sidebar h2 {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: var(--dark-container);
-  margin-bottom: 5px;
-}
-
-.left-sidebar h2:hover {
-  text-decoration: underline;
-  color: var(--hover-link);
-}
-
-.left-sidebar p {
-  font-size: 0.9rem;
-  color: var(--text-main);
-  margin-bottom: 15px;
-}
-
-.left-sidebar button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  color: white;
-  background-color: var(--dark-container);
-  border: 1px solid var(--text-main);
-  border-radius: 50px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.left-sidebar button:hover {
-  background-color: var(--hover-container);
-}
-
-.left-sidebar button a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.left-sidebar .home-button,
-.left-sidebar .new-post-button {
-  width: 20px;
-  height: 20px;
-}
-
-/*----------------------------------------------------------------------*/
-/* Center Column      -------------------------------------------------*/
+/* Center Column (For profile.html)-------------------------------------*/
 /*----------------------------------------------------------------------*/
 
 .center-col {
@@ -308,144 +165,125 @@ a:hover {
   cursor: pointer;
 }
 
-
 /*----------------------------------------------------------------------*/
-/* Right Sidebar Styles-------------------------------------------------*/
+/* Edit Profile Styles (For edit-profile.html) -------------------------*/
 /*----------------------------------------------------------------------*/
-.right-sidebar {
-  width: 300px;
-  flex-shrink: 0;
-  position: sticky;
-  top: 0;
-  height: fit-content;
 
-  background: transparent;
-  padding: 0;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-/* Search Bar */
-.right-sidebar .searchbar {
-  background: var(--container-bg);
-  border-radius: 50px;
-  padding: 10px 16px;
-  margin-bottom: 22px;
-
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-}
-
-.right-sidebar .searchbar form {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 0;
-}
-
-.right-sidebar .searchbar .search-icon {
-  width: 20px;
-  height: 20px;
-  margin: 0;
-  opacity: 0.7;
-}
-
-.right-sidebar .searchbar input {
-  flex: 1;
-  border: none !important;
-  outline: none;
-  background: transparent;
-  padding: 0 !important;
-  margin: 0;
-
-  font-size: 14px;
-  color: var(--text-main);
-}
-
-/* Trending + Filters Cards */
-.right-sidebar .trending,
-.right-sidebar .filters {
+.edit-profile {
   background: var(--container-bg);
   border-radius: 18px;
-  padding: 18px;
-  margin-bottom: 22px;
-
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
-/* Titles */
-.right-sidebar .trending h3,
-.right-sidebar .filters h3 {
-  font-size: 18px;
-  font-weight: 800;
+.edit-profile h2 {
+  font-size: 24px;
+  font-weight: bold;
   color: var(--dark-container);
-  margin-bottom: 12px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-/* Lists */
-.right-sidebar .trending ul{
-  list-style: none;
-  padding: 0 !important;
-  margin: 0;
+/* Cover Photo Edit */
+.edit-cover {
+  position: relative;
+  margin-bottom: 20px;
+}
 
+.edit-cover .cover {
+  height: 150px;
+  background: #efe6cf; /* Matches profile cover; replace with image if needed */
+  border-radius: 12px;
+}
+
+.edit-cover .dark-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+/* Avatar Edit Section (Centered) */
+.edit-avatar {
+  position: relative;
+  margin-top: -80px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-}
-
-.right-sidebar .trending li {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text-main);
-  margin: 0;
-}
-
-.right-sidebar .filter-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 14px;
-}
-
-.right-sidebar .filter-list label {
-  display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.edit-avatar .avatar.xl {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--container-bg);
+  margin-top: 0;
+}
+
+/* Form Styling */
+.edit-profile form {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-profile label {
+  font-weight: bold;
+  color: var(--dark-container);
+  margin-bottom: 5px;
+}
+
+.edit-profile input,
+.edit-profile textarea,
+.edit-profile select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 15px;
   font-size: 14px;
-  font-weight: 700;
-  color: var(--text-main);
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-/* Show more link */
-.right-sidebar .trending .show-more {
-  display: inline-block;
-  margin-top: 12px;
-
-  color: var(--hover-link);
-  font-weight: 700;
-  text-decoration: none;
+.edit-profile input:focus,
+.edit-profile textarea:focus,
+.edit-profile select:focus {
+  border-color: #008080; /* Teal accent */
+  box-shadow: 0 0 0 2px rgba(0, 128, 128, 0.1);
+  outline: none;
 }
 
-.right-sidebar .trending .show-more:hover {
-  color: var(--hover-container);
+.edit-profile textarea {
+  resize: vertical;
+  min-height: 80px;
 }
 
-/* filter buttom*/
+/* Form Actions (Buttons) */
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.light-btn {
+  background: transparent;
+  color: var(--dark-container);
+  border: 1px solid var(--dark-container);
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.light-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Overrides main.css filters button for correct format*/
 .right-sidebar .filters button {
   width: 100%;
-  margin-top: 14px;
-  padding: 12px;
-
-  border-radius: 50px;
-  border: none;
-
-  background: var(--dark-container);
-  color: white;
-  font-weight: 700;
-  cursor: pointer;
-
-  transition: 0.2s ease;
-}
-
-.right-sidebar .filters button:hover {
-  background: var(--hover-container);
+  margin: 14px auto 0;
+  display: block;
 }
