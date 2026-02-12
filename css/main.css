@@ -236,6 +236,8 @@ a:hover {
   flex-direction: column;
   gap: 10px;
   margin-bottom: 14px;
+  align-items: flex-start;
+  width: fit-content;
 }
 
 .right-sidebar .filter-list label {
@@ -245,6 +247,8 @@ a:hover {
   font-size: 14px;
   font-weight: 700;
   color: var(--text-main);
+  justify-content: flex-start;
+  width: fit-content;
 }
 
 /* Show more link */
@@ -263,7 +267,7 @@ a:hover {
 
 /* filter buttom*/
 .right-sidebar .filters button {
-  width: 100%;
+  width: 240%;
   margin-top: 14px;
   padding: 12px;
 
@@ -276,6 +280,7 @@ a:hover {
   cursor: pointer;
 
   transition: 0.2s ease;
+  box-sizing: border-box;
 }
 
 .right-sidebar .filters button:hover {
