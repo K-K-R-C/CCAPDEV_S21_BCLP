@@ -15,11 +15,11 @@
             <!---will be changed once we have a logo na-->
             <h1 class="logo">Gunita</h1> 
             <p class="tagline">Maglakbay. Magkuwento. Mag-gunita.</p>
-            <form>
+            <form action = "index.html" method = "get">
                 <label for="username">Username</label>
-                <input type="text" id="username" placeholder="Choose a username">
+                <input type="text" id="username" placeholder="Choose a username" required minlength = "1">
                 <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Create a password">
+                <input type="password" id="password" placeholder="Create a password" required minlength = "4">
                 <button type="submit">Register</button>
             </form>
         </section>
