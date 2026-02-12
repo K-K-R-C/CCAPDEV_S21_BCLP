@@ -99,6 +99,11 @@ a:hover {
   margin-bottom: 5px;
 }
 
+.left-sidebar h2:hover {
+  text-decoration: underline;
+  color: var(--hover-link);
+}
+
 .left-sidebar p {
   font-size: 0.9rem;
   color: var(--text-main);
