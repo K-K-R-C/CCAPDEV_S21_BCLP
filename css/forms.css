@@ -6,7 +6,7 @@
   max-width: 400px;
   margin: 4rem auto;
   padding: 2rem;
-  background-color: #ffffff;
+  background-color: var(--containter-bg);
   border-radius: 6px;
 }
 
@@ -41,7 +41,7 @@ button
   width: 100%;
   padding: 0.7rem;
   background-color: #2b7cff;
-  color: white;
+  color: var(--container-bg);
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -63,27 +63,40 @@ button:hover
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  color: white;
+  color: var(--container-bg);
   border-radius: 12px;
   margin-bottom: 20px;
   position: relative;
 }
 
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  z-index: 1;
+}
+
 .page-header h1, 
 .page-header p {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 .page-header h1 {
   font-size: 2.5rem;
   margin-bottom: 10px;
-  color: #ffffff;
+  color: var(--container-bg);
 }
 
 .page-header p {
   font-size: 1.2rem;
-  color: #7f7f7f;
+  color: #f0f0f0;
 }
 
 
@@ -95,7 +108,7 @@ button:hover
 .create-post {
   max-width: 600px;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: var(--container-bg);
   border-radius: 20px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   padding: 30px;
@@ -115,14 +128,14 @@ button:hover
 .create-post label {
   font-weight: bold;
   margin-bottom: 8px;
-  color: #231f20;
+  color: var(--dark-container);
 }
 
 .create-post input, 
 .create-post select, 
 .create-post textarea {
   padding: 12px;
-  border: 1px solid #7f7f7f;
+  border: 1px solid var(--text-main);
   border-radius: 8px;
   font-size: 1rem;
   transition: border-color 0.3s, box-shadow 0.3s;
@@ -131,13 +144,13 @@ button:hover
 .create-post input:focus,
 .create-post select:focus,
 .create-post textarea:focus {
-  border-color: #7096ba;
+  border-color: var(--hover-link);
   box-shadow: 0 0 5px rgba(112, 150, 186, 0.5);
   outline: none;
 }
 
 .upload-box {
-  border: 2px dashed #7f7f7f;
+  border: 2px dashed var(--text-main);
   border-radius: 8px;
   padding: 40px;
   text-align: center;
@@ -147,7 +160,7 @@ button:hover
 }
 
 .upload-box:hover {
-  border-color: #7096ba;
+  border-color: var(--hover-link);
   background-color: rgba(112, 150, 186, 0.1);
 }
 
@@ -161,7 +174,7 @@ button:hover
 
 .upload-box p {
   margin: 0;
-  color: #7f7f7f;
+  color: var(--text-main);
 }
 
 /*Overrides existing button for create-post*/
@@ -184,8 +197,8 @@ button:hover
 }
 
 .cancel-btn {
-  background-color: #7f7f7f;
-  color: #ffffff;
+  background-color: var(--text-main);
+  color: var(--container-bg);
 }
 
 .cancel-btn:hover {
@@ -194,11 +207,11 @@ button:hover
 }
 
 .post-btn {
-  background-color: #7096ba;
-  color: white;
+  background-color: var(--hover-link);
+  color: var(--container-bg);
 }
 
 .post-btn:hover {
-  background-color: #486580;
+  background-color: var(--hover-container);
   transform: scale(1.05);
 }
