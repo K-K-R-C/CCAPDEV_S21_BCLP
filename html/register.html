@@ -2,6 +2,7 @@
 <head>
     <title>GunitaPH</title>
     <link rel="stylesheet" href="../css/auth.css">
+    <script src="../js/main.js" defer></script>
 </head>
 <body>
 
@@ -15,12 +16,12 @@
             <!---will be changed once we have a logo na-->
             <h1 class="logo">Gunita</h1> 
             <p class="tagline">Maglakbay. Magkuwento. Mag-gunita.</p>
-            <form action = "index.html" method = "get">
+            <form>
                 <label for="username">Username</label>
-                <input type="text" id="username" placeholder="Choose a username" required minlength = "1">
+                <input type="text" id="username" placeholder="Choose a username">
                 <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Create a password" required minlength = "4">
-                <button type="submit">Register</button>
+                <input type="password" id="password" placeholder="Create a password">
+                <button type="button" id="registerButton">Register</button>
             </form>
         </section>
     </main>
