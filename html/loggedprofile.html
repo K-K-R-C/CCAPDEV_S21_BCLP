@@ -4,10 +4,8 @@
     <title>Gunita</title>
 
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/profile.css">
     <link rel="stylesheet" href="../css/posts.css">
-    <script src="../js/main.js" defer></script>
-
+    <link rel="stylesheet" href="../css/profile.css">
   </head>
 
   <body>
@@ -21,21 +19,10 @@
             </div>
 
             <img src="../images/profile.jpg" class="profile-pic" alt="Profile Pic">
-            <h2><a href="profile.html" class="profile-link">batmeow</a></h2>
+            <h2><a href="loggedprofile.html" class="profile-link">batmeow</a></h2>
             <p>@dlsu-pusa</p>
             <button> <a href="index.html"><img src="../images/home-button.png" class="home-button" alt="Home"></a>Home</button> 
             <button> <a href="create-post.html"><img src="../images/new-post-button.png" class="new-post-button" alt="New Post"></a>New Post</button>
-        </div>
-
-        <div class="left-sidebar" id="loggedOutContainer">
-            <!-- Logo -->
-            <div class="logo">
-                <h1 class="name"><span>G</span>UNITA</h1>
-            </div>
-
-            <img src="../images/guest-profile.png" class="profile-pic" alt="Profile Pic">
-            <h2 style="color: #7f7f7f">guest</h2>
-            <button> <a href="register.html"><img src="../images/login-button.png" class="register-button" alt="Register"></a>Sign up</button>
         </div>
 
         <!-- CENTER COLUMN -->
@@ -46,7 +33,9 @@
               <div class="cover"></div>
 
               <div class="profile-row">
-                <img src="../images/profile.jpg" alt="Profile Picture" class="avatar xl">
+                <a href="../images/profile.jpg">
+                  <img src="../images/profile.jpg" alt="Profile Picture" class="avatar xl">
+                </a>
 
                 <div class="profile-meta">
                   <h2 class="profile-name">batmeow</h2>
@@ -67,7 +56,9 @@
                 </div>
 
                 <div class="profile-actions">
-                  <button type="button" class="dark-btn" id="logoutButton">Log out</button>
+                    <a href="login.html" class = "btn-link">
+                      <button type="button" class="dark-btn" id="logoutButton">Log out</button>
+                    </a>
                     <a href = "edit-profile.html" class = "btn-link">
                         <button class="dark-btn">Edit profile</button>
                     </a>
@@ -77,21 +68,63 @@
 
           <!-- POST CARD -->
           <a href="post.html" class="post-link">
-              <article class="card post">
-                <div class="post-top">
-                  <div class="post-user">
-                    <div class="avatar small"></div>
-                    <span class="post-name">batmeow</span>
-                  </div>
-                  <span class="post-time">23 hours ago</span>
+            <div class="post">
+
+                <div class="post-header">
+                    <div class="user">
+                        <img src="../images/profile.jpg" class="profile-pic" alt="Profile Pic">
+                        <p>batmeow</p>
+                    </div>
+                    <span class="post-date">23 hours ago</span>
                 </div>
 
-                <div class="post-media">
-                  <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?q=80&w=1200&auto=format&fit=crop"
-                      alt="Post image" />
+                <div class="post-images">
+                    <img src="../images/boracay1.jpg" alt="Post Image 1">
+                    <img src="../images/boracay2.jpg" alt="Post Image 2">
                 </div>
-              </article> 
+
+                <div class="post-content">
+                    <p><strong>Finally touching grass &lt;3</strong></p>
+                    <p>Back in Boracay after a long semester and it still feels unreal. 
+                    White Beach in the afternoon hits different — soft sand, clear water, 
+                    and that golden sunset glow. Sometimes you just need a quick island reset.</p>
+                </div>
+
+
+                <div class="post-footer">
+                    <div class="interactions">
+                        <img src="../images/thumbs-up.png" alt="Like" class="icon">
+                        <span class="counter">1.1k</span>
+
+                        <img src="../images/thumbs-down.png" alt="Dislike" class="icon">
+
+                        <img src="../images/comment.png" alt="Comment" class="icon">
+                        <span class="counter">15</span>
+                    </div>
+
+                    <div class="hashtags">
+                        <span>#beachin' #hot #tan</span>
+                    </div>
+                </div>
+
+            </div>
           </a>
+
+          <!-- RECENT COMMENTS (no JS) -->
+          <div class="profile-section">
+            <h3 class="section-title">Recent Comments</h3>
+
+            <!-- Comment 1 -->
+            <a href="post.html" class="comment-card">
+              <div class="comment-top">
+                <div class="comment-context">
+                  On: <strong>Dumaguete is such a hidden gem!</strong> by <span class="comment-author">@kaloy</span>
+                </div>
+                <span class="comment-time">2 days ago</span>
+              </div>
+              <p class="comment-text">Agree! Try the seaside boulevard at sunset — super chill.</p>
+            </a>
+
         </section>
 
 

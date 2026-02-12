@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gunita - monami</title>
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/posts.css">
+    <link rel="stylesheet" href="../css/profile.css">
+    
+  </head>
+
+  <body>
+    <div class="container">
+
+        <!-- LEFT SIDEBAR (LOGGED OUT) -->
+        <div class="left-sidebar" id="loggedOutContainer">
+            <div class="logo">
+                <h1 class="name"><span>G</span>UNITA</h1>
+            </div>
+
+            <img src="../images/guest-profile.png" class="profile-pic" alt="Profile Pic">
+            <h2 style="color: #7f7f7f">guest</h2>
+
+            <button>
+              <a href="register.html">
+                <img src="../images/login-button.png" class="register-button" alt="Register">
+                Sign up
+              </a>
+            </button>
+
+            <button>
+              <a href="login.html">
+                Log in
+              </a>
+            </button>
+        </div>
+
+        <!-- CENTER COLUMN -->
+        <section class="center-col">
+
+          <!-- PROFILE HEADER -->
+          <div class="card profile-header">
+              <div class="cover"></div>
+
+              <div class="profile-row">
+                <a href="../images/monami.jpg">
+                  <img src="../images/monami.jpg" alt="Profile Picture" class="avatar xl">
+                </a>
+
+                <div class="profile-meta">
+                  <h2 class="profile-name">monami</h2>
+                  <p class="profile-handle">@minomikami</p>
+                  <p class="profile-location">Tagaytay, Philippines</p>
+
+                  <p class="stats">
+                    <strong>12.3k</strong> followers
+                    <span class="dot">•</span>
+                    <strong>890</strong> following
+                    <span class="dot">•</span>
+                    <strong>1</strong> posts
+                  </p>
+
+                  <p class="bio">
+                    Coffee lover ☕ | Slow mornings & scenic views 🌄
+                  </p>
+                </div>
+
+                <div class="profile-actions">
+                  <a href="login.html">
+                    <button class="dark-btn">Log in</button>
+                  </a>
+                  <a href="register.html">
+                    <button class="dark-btn">Sign up</button>
+                  </a>
+                </div>
+              </div>
+          </div>
+
+          <!-- POST (Your Provided 5th Post) -->
+          <a href="post.html" class="post-link">
+            <div class="post">
+
+                <div class="post-header">
+                    <div class="user">
+                        <img src="../images/monami.jpg" class="profile-pic" alt="Profile Pic">
+                        <p>monami</p>
+                    </div>
+                    <span class="post-date">Sept 1, 2018</span>
+                </div>
+
+                <div class="post-images">
+                    <img src="../images/monamipost.jpg" alt="Post Image 1">
+                </div>
+
+                <div class="post-content">
+                    <p><strong>Tagaytay mornings are everything @CubiCafe</strong></p>
+                    <p>Seriously, the view of Taal never gets old. Foggy, fresh, and perfect coffee weather.</p>
+                </div>
+
+                <div class="post-footer">
+                    <div class="interactions">
+                        <img src="../images/thumbs-up.png" alt="Like" class="icon">
+                        <span class="counter">555</span>
+
+                        <img src="../images/thumbs-down.png" alt="Dislike" class="icon">
+
+                        <img src="../images/comment.png" alt="Comment" class="icon">
+                        <span class="counter">0</span>
+                    </div>
+
+                    <div class="hashtags">
+                        <span>#Tagaytay #MorningViews #CoffeeLovers</span>
+                    </div>
+                </div>
+
+            </div>
+          </a>
+
+          <!-- RECENT COMMENTS -->
+          <div class="profile-section">
+            <h3 class="section-title">Recent Comments</h3>
+
+            <a href="post.html" class="comment-card">
+              <div class="comment-top">
+                <div class="comment-context">
+                  On: <strong>Morning hikes hit different 🌄</strong>
+                  by <span class="comment-author">@ophiuche</span>
+                </div>
+                <span class="comment-time">3 days ago</span>
+              </div>
+              <p class="comment-text">
+                Mt. Pulag sunrise is on my bucket list 😍
+              </p>
+            </a>
+          </div>
+
+        </section>
+
+        <!-- RIGHT SIDEBAR -->
+        <div class="right-sidebar">
+            <div class="searchbar">
+                <form>
+                    <img src="../images/search-icon.png" alt="Search" class="search-icon">
+                    <input type="text" placeholder="Search...">
+                </form>
+            </div>
+
+            <div class="trending">
+                <h3>Top 3 Trending</h3>
+                <ul>
+                    <li>#EntitledForeigners</li>
+                    <li>#ValentinesDay</li>
+                    <li>#HappySinglesDay</li>
+                </ul>
+            </div>
+
+            <div class="card filters">
+                <h3>Destination</h3>
+                <div class="filter-list">
+                  <label><input type="checkbox" checked> Luzon</label>
+                  <label><input type="checkbox"> Visayas</label>
+                  <label><input type="checkbox"> Mindanao</label>
+                </div>
+
+                <h3 class="section-gap">Travel Style</h3>
+                <div class="filter-list">
+                  <label><input type="checkbox" checked> Budget</label>
+                  <label><input type="checkbox"> Family</label>
+                  <label><input type="checkbox"> Backpacking</label>
+                  <label><input type="checkbox"> Luxury</label>
+                  <label><input type="checkbox"> Solo</label>
+                </div>
+
+                <button>Set Filters</button>
+            </div>
+        </div>
+
+    </div>
+  </body>
+</html>

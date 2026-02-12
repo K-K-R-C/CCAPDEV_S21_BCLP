@@ -13,6 +13,8 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .post-header .user {
@@ -134,12 +136,6 @@
   cursor: default;
 }
 
-/* Bigger images for detailed view */
-.detailed-post .post-images img {
-  width: 250px;
-  height: 250px;
-}
-
 /* Comments Section */
 .comments-section {
   margin-top: 20px;
@@ -163,3 +159,205 @@
 .comments-section .comment:last-child {
   border-bottom: none;
 }
+
+/* Clickable usernames inside comments */
+.comment strong a {
+  color: var(--dark-container);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.comment strong a:hover {
+  color: var(--hover-link);
+  text-decoration: underline;
+}
+
+/* Guest disabled icons */
+.icon-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Add comment link */
+.add-comment-link {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--hover-link);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.add-comment-link:hover {
+  color: var(--hover-container);
+  text-decoration: underline;
+}
+
+/* Guest login notice */
+.login-notice {
+  background: #f7f7f7;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+  font-size: 14px;
+}
+
+.login-notice a {
+  color: var(--hover-link);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.login-notice a:hover {
+  color: var(--hover-container);
+  text-decoration: underline;
+}
+
+/* Owner actions (edit/delete post) */
+.post-owner-actions {
+  display: flex;
+  gap: 10px;
+  margin: 10px 10px 0;
+}
+
+.owner-btn {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--dark-container);
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.owner-btn:hover {
+  background: var(--hover-container);
+}
+
+.owner-btn.danger {
+  background: var(--dislike-color);
+}
+
+.owner-btn.danger:hover {
+  filter: brightness(0.95);
+}
+
+/* --------------------------- */
+/* Nested Comments GUI (no JS) */
+/* --------------------------- */
+
+.comments-section {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.comments-section h3 {
+  margin-bottom: 12px;
+  font-size: 1rem;
+  color: var(--dark-container);
+}
+
+/* Each comment as a small "card row" */
+.comment {
+  position: relative;
+  padding: 12px 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.comment:last-child {
+  border-bottom: none;
+}
+
+/* Header row: avatar + name left, time right */
+.comment-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.comment-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.comment-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.comment-time {
+  font-size: 12px;
+  color: #777;
+  white-space: nowrap;
+}
+
+/* Username link */
+.comment strong a {
+  color: var(--dark-container);
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.comment strong a:hover {
+  color: var(--hover-link);
+  text-decoration: underline;
+}
+
+.comment-text {
+  color: var(--text-main);
+  font-size: 14px;
+  line-height: 1.4;
+  margin-left: 44px; 
+}
+
+/* Actions row */
+.comment-actions {
+  margin-left: 44px;
+  margin-top: 6px;
+  display: flex;
+  gap: 12px;
+}
+
+.comment-link {
+  color: var(--hover-link);
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.comment-link:hover {
+  color: var(--hover-container);
+  text-decoration: underline;
+}
+
+/* Replies container: indentation + vertical guide line */
+.replies {
+  margin-left: 44px;         /* indent replies */
+  margin-top: 10px;
+  padding-left: 14px;
+  border-left: 2px solid #ddd;
+}
+
+/* Make deeper nesting tighter and cleaner */
+.replies .comment {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 10px 10px;
+}
+
+/* Optional: limit how wide the indentation grows for deep nesting */
+.replies .replies {
+  margin-left: 24px;
+  padding-left: 12px;
+  border-left-color: #ccc;
+}
+

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gunita - ventilogz</title>
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/posts.css">
+    <link rel="stylesheet" href="../css/profile.css">
+    <script src="../js/main.js" defer></script>
+  </head>
+
+  <body>
+    <div class="container">
+
+        <!-- LEFT SIDEBAR (LOGGED OUT) -->
+        <div class="left-sidebar" id="loggedOutContainer">
+            <!-- Logo -->
+            <div class="logo">
+                <h1 class="name"><span>G</span>UNITA</h1>
+            </div>
+
+            <img src="../images/guest-profile.png" class="profile-pic" alt="Profile Pic">
+            <h2 style="color: #7f7f7f">guest</h2>
+            <button> <a href="register.html"><img src="../images/login-button.png" class="register-button" alt="Register"></a>Sign up</button>
+        </div>
+
+        <!-- CENTER COLUMN -->
+        <section class="center-col">
+
+          <!-- PROFILE HEADER -->
+          <div class="card profile-header">
+              <div class="cover"></div>
+
+              <div class="profile-row">
+                <a href="../images/ventilogzprofile.jpg">
+                  <img src="../images/ventilogzprofile.jpg" alt="Profile Picture" class="avatar xl">
+                </a>
+
+                <div class="profile-meta">
+                  <h2 class="profile-name">ventilogz</h2>
+                  <p class="profile-handle">@travelMaster</p>
+                  <p class="profile-location">Cebu, Philippines</p>
+
+                  <p class="stats">
+                    <strong>3.2k</strong> followers
+                    <span class="dot">•</span>
+                    <strong>120</strong> following
+                    <span class="dot">•</span>
+                    <strong>1</strong> posts
+                  </p>
+
+                  <p class="bio">
+                    Travel lover 🌴 Always planning the next family trip.
+                  </p>
+                </div>
+
+                <div class="profile-actions">
+                  <a href="login.html">
+                    <button class="dark-btn">Log in</button>
+                  </a>
+                  <a href="register.html">
+                    <button class="dark-btn">Register</button>
+                  </a>
+                </div>
+              </div>
+          </div>
+
+          <!-- POST -->
+          <a href="post.html" class="post-link">
+            <div class="post">
+                <div class="post-header">
+                    <div class="user">
+                        <img src="../images/ventilogzprofile.jpg" class="profile-pic" alt="Profile Pic">
+                        <p>ventilogz</p>
+                    </div>
+                    <span class="post-date">Nov 16, 2017</span>
+                </div>
+
+                <div class="post-images">
+                    <img src="../images/ventilogzpost1.jpg" alt="Post Image 1">
+                </div>
+
+                <div class="post-content">
+                    <p><strong>Any place to visit in Bohol?</strong></p>
+                    <p>I am planning to visit Bohol with my family soon. Any recommendations guys? Anong must-try there?</p>
+                </div>
+
+                <div class="post-footer">
+                    <div class="interactions">
+                        <img src="../images/thumbs-up.png" alt="Like" class="icon">
+                        <span class="counter">120</span>
+
+                        <img src="../images/thumbs-down.png" alt="Dislike" class="icon">
+
+                        <img src="../images/comment.png" alt="Comment" class="icon">
+                        <span class="counter">5</span>
+                    </div>
+
+                    <div class="hashtags">
+                        <span>#Bohol #TravelPhilippines #FamilyTrip</span>
+                    </div>
+                </div>
+            </div>
+          </a>
+
+          <!-- RECENT COMMENTS -->
+          <div class="profile-section">
+            <h3 class="section-title">Recent Comments</h3>
+
+            <a href="post.html" class="comment-card">
+              <div class="comment-top">
+                <div class="comment-context">
+                  On: <strong>Morning hikes hit different 🌄</strong> 
+                  by <span class="comment-author">@ophiuche</span>
+                </div>
+                <span class="comment-time">3 days ago</span>
+              </div>
+              <p class="comment-text">
+                Mt. Pulag sunrise is worth the early wake up!
+              </p>
+            </a>
+          </div>
+
+        </section>
+
+        <!-- RIGHT SIDEBAR -->
+        <div class="right-sidebar">
+            <div class="searchbar">
+                <form>
+                    <img src="../images/search-icon.png" alt="Search" class="search-icon">
+                    <input type="text" placeholder="Search...">
+                </form>
+            </div>
+
+            <div class="trending">
+                <h3>Top 3 Trending</h3>
+                <ul>
+                    <li>#EntitledForeigners</li>
+                    <li>#ValentinesDay</li>
+                    <li>#HappySinglesDay</li>
+                </ul>
+            </div>
+
+            <div class="card filters">
+                <h3>Destination</h3>
+                <div class="filter-list">
+                  <label><input type="checkbox" checked> Luzon</label>
+                  <label><input type="checkbox"> Visayas</label>
+                  <label><input type="checkbox"> Mindanao</label>
+                </div>
+
+                <h3 class="section-gap">Travel Style</h3>
+                <div class="filter-list">
+                  <label><input type="checkbox" checked> Budget</label>
+                  <label><input type="checkbox"> Family</label>
+                  <label><input type="checkbox"> Backpacking</label>
+                  <label><input type="checkbox"> Luxury</label>
+                  <label><input type="checkbox"> Solo</label>
+                </div>
+
+                <button>Set Filters</button>
+            </div>
+        </div>
+
+    </div>
+  </body>
+</html>

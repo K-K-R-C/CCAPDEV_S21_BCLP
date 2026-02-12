@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Post (Guest)</title>
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href="../css/posts.css">
+  </head>
+
+  <body>
+    <div class="container">
+
+      <!-- LEFT SIDEBAR (LOGGED OUT) -->
+        <div class="left-sidebar" id="loggedInContainer">
+            <!-- Logo -->
+            <div class="logo">
+                <h1 class="name"><span>G</span>UNITA</h1>
+            </div>
+
+            <img src="../images/profile.jpg" class="profile-pic" alt="Profile Pic">
+            <h2><a href="loggedprofile.html" class="profile-link">batmeow</a></h2>
+            <p>@dlsu-pusa</p>
+            <button> <a href="index.html"><img src="../images/home-button.png" class="home-button" alt="Home"></a>Home</button> 
+            <button> <a href="create-post.html"><img src="../images/new-post-button.png" class="new-post-button" alt="New Post"></a>New Post</button>
+        </div>
+
+      <div class="single-post">
+        <div class="post detailed-post">
+          <div class="post-header">
+            <div class="user">
+              <img src="../images/profile.jpg" class="profile-pic" alt="Profile Pic">
+              <a href="loggedprofile.html" class="profile-link"><p>tresnumeros</p></a>
+            </div>
+            <span class="post-date">23 hours ago</span>
+          </div>
+
+          <div class="post-owner-actions">
+            <a href="edit-post.html" class="owner-btn">Edit Post</a>
+            <a href="delete-post.html" class="owner-btn danger">Delete Post</a>
+          </div>
+
+          <div class="post-images">
+                <img src="../images/boracay1.jpg" alt="Post Image 1">
+                <img src="../images/boracay2.jpg" alt="Post Image 2">
+          </div>
+
+          <div class="post-content">
+                <p><strong>Finally touching grass &lt;3</strong></p>
+                <p>Back in Boracay after a long semester and it still feels unreal. 
+                White Beach in the afternoon hits different — soft sand, clear water, 
+                and that golden sunset glow. Sometimes you just need a quick island reset.</p>
+            </div>
+
+          <div class="post-footer">
+            <div class="interactions">
+              <img src="../images/thumbs-up.png" alt="Like" class="icon icon-disabled">
+              <span class="counter">1.1k</span>
+
+              <img src="../images/thumbs-down.png" alt="Dislike" class="icon icon-disabled">
+
+              <img src="../images/comment.png" alt="Comment" class="icon icon-disabled">
+              <span class="counter">15</span>
+            </div>
+
+            <div class="hashtags">
+              <span>#beachin' #hot #tan</span>
+            </div>
+          </div>
+
+          <!-- COMMENTS --><div class="comments-section">
+    <h3>Comments</h3>
+
+  <!-- Comment 1 -->
+  <div class="comment">
+    <div class="comment-head">
+      <div class="comment-user">
+        <img src="../images/kaloyprofile.jpg" class="comment-avatar" alt="kaloy">
+        <strong><a href="profile-kaloy.html">kaloy</a></strong>
+      </div>
+      <span class="comment-time">2 days ago</span>
+    </div>
+
+    <p class="comment-text">Warning: May Cause Nostalgia</p>
+
+    <div class="comment-actions">
+      <a href="../html/comment.html" class="comment-link">Reply</a>
+    </div>
+
+    <!-- Replies -->
+    <div class="replies">
+      <div class="comment">
+        <div class="comment-head">
+          <div class="comment-user">
+            <img src="../images/profile.jpg" class="comment-avatar" alt="batmeow">
+            <strong><a href="profile2.html">batmeow</a></strong>
+          </div>
+          <span class="comment-time">1 day ago</span>
+        </div>
+
+        <p class="comment-text">Haha totally agree!</p>
+
+        <div class="comment-actions">
+          <a href="../html/comment.html" class="comment-link">Reply</a>
+        </div>
+
+        <!-- Nested reply (level 3) -->
+        <div class="replies">
+          <div class="comment">
+            <div class="comment-head">
+              <div class="comment-user">
+                <img src="../images/ventilogzprofile.jpg" class="comment-avatar" alt="ventilogz">
+                <strong><a href="profile3.html">ventilogz</a></strong>
+              </div>
+              <span class="comment-time">20h ago</span>
+            </div>
+
+            <p class="comment-text">Sana makapunta rin ako dun soon.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="comment">
+        <div class="comment-head">
+          <div class="comment-user">
+            <img src="../images/monami.jpg" class="comment-avatar" alt="monami">
+            <strong><a href="profile5.html">monami</a></strong>
+          </div>
+          <span class="comment-time">12h ago</span>
+        </div>
+
+        <p class="comment-text">My dream destination..</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+        </div>
+      </div>
+
+      <!-- RIGHT SIDEBAR (same as yours) -->
+      <div class="right-sidebar">
+        <div class="searchbar">
+          <form>
+            <img src="../images/search-icon.png" alt="Search" class="search-icon">
+            <input type="text" placeholder="Search...">
+          </form>
+        </div>
+
+        <div class="trending">
+          <h3>Top 3 Trending</h3>
+          <ul>
+            <li>#EntitledForeigners</li>
+            <li>#ValentinesDay</li>
+            <li>#HappySinglesDay</li>
+          </ul>
+        </div>
+
+        <div class="filters">
+          <h3>Destination</h3>
+          <div class="filter-list">
+            <label><input type="checkbox" checked> Luzon</label>
+            <label><input type="checkbox"> Visayas</label>
+            <label><input type="checkbox"> Mindanao</label>
+          </div>
+
+          <h3 class="section-gap">Travel Style</h3>
+          <div class="filter-list">
+            <label><input type="checkbox" checked> Budget</label>
+            <label><input type="checkbox"> Family</label>
+            <label><input type="checkbox"> Backpacking</label>
+            <label><input type="checkbox"> Luxury</label>
+            <label><input type="checkbox"> Solo</label>
+            <button>Set Filters</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>
