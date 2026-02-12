@@ -135,7 +135,8 @@ a:hover {
 }
 
 .left-sidebar .home-button,
-.left-sidebar .new-post-button {
+.left-sidebar .new-post-button,
+.left-sidebar .register-button {
   width: 20px;
   height: 20px;
 }
