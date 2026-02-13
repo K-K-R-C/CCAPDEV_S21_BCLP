@@ -8,6 +8,9 @@ let isLoggedIn = false;
 let loggedIn = document.getElementById("loggedInContainer");
 let loggedOut = document.getElementById("loggedOutContainer");
 
+let loggedInProfile = document.getElementById("loggedInProfile");
+let loggedOutProfile = document.getElementById("loggedOutProfile");
+
 if (localStorage.getItem("isLoggedIn") === "true") {
     isLoggedIn = true;
 }
@@ -19,6 +22,16 @@ if (loggedIn && loggedOut) {
     } else {
         loggedIn.style.display = "none";
         loggedOut.style.display = "block";
+    }
+}
+
+if (loggedInProfile && loggedOutProfile) {
+    if (isLoggedIn) {
+        loggedOutProfile.style.display = "none";
+        loggedInProfile.style.display = "block";
+    } else {
+        loggedInProfile.style.display = "none";
+        loggedOutProfile.style.display = "block";
     }
 }
 
