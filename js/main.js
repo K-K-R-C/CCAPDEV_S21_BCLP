@@ -59,8 +59,40 @@ if (logoutButton) {
     });
 }
 
+let liked = false;
+let disliked = false;
+
 function changeLikeImage() {
-  var img = document.getElementById("like");
-  img.src = "../images/blue-like.png"; // Set the new image source
+  var likeImg = document.getElementById("like");
+  var dislikeImg = document.getElementById("dislike");
+
+  if (!liked) {
+    likeImg.src = "../images/blue-like.png";
+    liked = true;
+
+    dislikeImg.src = "../images/thumbs-down.png";
+    disliked = false;
+
+  } else {
+    likeImg.src = "../images/thumbs-up.png";
+    liked = false;
+  }
+}
+
+function changeDislikeImage() {
+  var likeImg = document.getElementById("like");
+  var dislikeImg = document.getElementById("dislike");
+
+  if (!disliked) {
+    dislikeImg.src = "../images/red-dislike.png";
+    disliked = true;
+
+    likeImg.src = "../images/thumbs-up.png";
+    liked = false;
+
+  } else {
+    dislikeImg.src = "../images/thumbs-down.png";
+    disliked = false;
+  }
 }
 
