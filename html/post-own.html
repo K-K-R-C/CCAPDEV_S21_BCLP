@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/sidebar.css">
     <link rel="stylesheet" href="../css/posts.css">
+    <script src="../js/main.js" defer></script>
+
   </head>
 
   <body>
@@ -25,19 +27,45 @@
             <button> <a href="create-post.html"><img src="../images/new-post-button.png" class="new-post-button" alt="New Post"></a>New Post</button>
         </div>
 
+        <div class="left-sidebar" id="loggedOutContainer">
+            <!-- Logo -->
+            <div class="logo">
+                <h1 class="name"><span>G</span>UNITA</h1>
+            </div>
+
+            <img src="../images/guest-profile.png" class="profile-pic" alt="Profile Pic">
+            <h2 style="color: #7f7f7f">guest</h2>
+            <button>
+              <a href="register.html">
+                <!-- <img src="../images/login-button.png" class="register-button" alt="Register"> -->
+                Sign up
+              </a>
+            </button>
+
+            <button>
+              <a href="login.html">
+                Log in
+              </a>
+            </button>
+        </div>
+
       <div class="single-post">
         <div class="post detailed-post">
           <div class="post-header">
             <div class="user">
               <img src="../images/profile.jpg" class="profile-pic" alt="Profile Pic">
-              <a href="loggedprofile.html" class="profile-link"><p>tresnumeros</p></a>
+              <a href="loggedprofile.html" class="profile-link"><p>batmeow</p></a>
             </div>
             <span class="post-date">23 hours ago</span>
           </div>
 
-          <div class="post-owner-actions">
+          <div class="post-owner-actions" id="loggedInProfile">
             <a href="edit-post.html" class="owner-btn">Edit Post</a>
             <a href="delete-post.html" class="owner-btn danger">Delete Post</a>
+          </div>
+
+          <div class="post-owner-actions" id="loggedOutProfile">
+            <!--Is this spaghetti code? fix this later !!-->
           </div>
 
           <div class="post-images">
