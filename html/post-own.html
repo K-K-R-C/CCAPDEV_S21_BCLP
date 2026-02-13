@@ -62,7 +62,25 @@
 
           <div class="post-owner-actions" id="loggedInProfile">
             <a href="../html/edit-post.html" class="owner-btn">Edit Post</a>
-            <a href="delete-post.html" class="owner-btn danger">Delete Post</a>
+            <input type="checkbox" id="delete-post-toggle" class="delete-toggle">
+
+            <!-- Delete Post Button -->
+            <label for="delete-post-toggle" class="owner-btn danger">
+              Delete Post
+            </label>
+
+            <!-- Modal -->
+            <div class="delete-modal">
+              <div class="delete-modal-content">
+                <h3>Delete Post</h3>
+                <p>Are you sure you want to delete this post?</p>
+
+                <div class="modal-actions">
+                  <label for="delete-post-toggle" class="light-btn">Cancel</label>
+                  <a href="delete-post.html" class="dark-btn">Delete</a>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="post-owner-actions" id="loggedOutProfile">
