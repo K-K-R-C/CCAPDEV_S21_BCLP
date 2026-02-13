@@ -61,7 +61,7 @@
           </div>
 
           <div class="post-owner-actions" id="loggedInProfile">
-            <a href="edit-post.html" class="owner-btn">Edit Post</a>
+            <a href="../html/edit-post.html" class="owner-btn">Edit Post</a>
             <a href="delete-post.html" class="owner-btn danger">Delete Post</a>
           </div>
 
@@ -131,6 +131,24 @@
 
         <div class="comment-actions">
           <a href="../html/comment.html" class="comment-link">Reply</a>
+            <a href = "../html/edit-comment.html" class = "comment-link">Edit</a><!-- Hidden Checkbox Trigger -->
+            <input type="checkbox" id="delete-toggle-1" class="delete-toggle">
+
+            <!-- Delete Button -->
+            <label for="delete-toggle-1" class="delete-btn">Delete</label>
+
+            <!-- Modal -->
+            <div class="delete-modal">
+              <div class="delete-modal-content">
+                <h4>Delete Comment</h4>
+                <p>Are you sure you want to delete this?</p>
+
+                <div class="modal-actions">
+                  <label for="delete-toggle-1" class="light-btn">Cancel</label>
+                  <button class="dark-btn">Delete</button>
+                </div>
+              </div>
+            </div>
         </div>
 
         <!-- Nested reply (level 3) -->

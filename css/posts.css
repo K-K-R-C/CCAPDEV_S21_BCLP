@@ -361,3 +361,70 @@
   border-left-color: #ccc;
 }
 
+/* Hide checkbox */
+.delete-toggle {
+  display: none;
+}
+
+/* Delete button style */
+.delete-btn {
+  color: #9d4132;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.delete-btn:hover {
+  text-decoration: underline;
+}
+
+/* Modal overlay */
+.delete-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Modal box */
+.delete-modal-content {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Show modal when checkbox is checked */
+.delete-toggle:checked ~ .delete-modal {
+  display: flex;
+}
+
+/* Modal buttons layout */
+.modal-actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Cancel button */
+.light-btn {
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: #cacaca;
+  cursor: pointer;
+}
+
+/* Delete confirm button */
+.dark-btn {
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: #9d4132;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
