@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Comment - GunitaPH</title>
+    <link rel="icon" href="../images/gunita-logo.png" type="image/png">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/forms.css">
+    <link rel="stylesheet" href="../css/posts.css">
+  </head>
+
+  <body>
+    <div class="container">
+
+      <!-- Left Sidebar (Same as post.html) -->
+      <div class="left-sidebar">
+        <!-- Logo -->
+        <div class="logo">
+          <h1 class="name"><span>G</span>UNITA</h1>
+        </div>
+
+        <img src="../images/profile.jpg" class="profile-pic" alt="Profile Pic">
+        <h2><a href="loggedprofile.html" class="profile-link">batmeow</a></h2>
+        <p>@dlsu-pusa</p>
+        <button><a href="index.html"><img src="../images/home-button.png" class="home-button" alt="Home"></a>Home</button>
+        <button><a href="create-post.html"><img src="../images/new-post-button.png" class="new-post-button" alt="New Post"></a>New Post</button>
+      </div>
+
+      <!-- Feed (Centered Comment Form) -->
+      <div class="feed">
+
+        <!-- Page Header -->
+        <div class="page-header">
+          <h1>Add a Comment</h1>
+          <p>Share your thoughts on this post!</p>
+        </div>
+
+        <!-- Centered Comment Form -->
+        <div class="create-post">
+          <form>
+            <div class="form-group">
+              <label for="comment">Your Comment/Reply</label>
+              <textarea id="comment" name="comment" rows="5" placeholder="Write your comment here..." required></textarea>
+            </div>
+
+            <div class="form-buttons">
+              <button type="button" onclick="window.location.href='post-own.html'">Cancel</button>
+              <button type="button" onclick="window.location.href='post.html'">Post Comment</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Right Sidebar (Same as post.html) -->
+      <div class="right-sidebar">
+        <!-- Search Bar -->
+        <div class="searchbar">
+          <form>
+            <img src="../images/search-icon.png" alt="Search" class="search-icon">
+            <input type="text" placeholder="Search...">
+          </form>
+        </div>
+
+        <!-- Trending Section -->
+        <div class="trending">
+          <h3>Top 3 Trending</h3>
+          <ul>
+            <li>#EntitledForeigners</li>
+            <li>#ValentinesDay</li>
+            <li>#HappySinglesDay</li>
+          </ul>
+        </div>
+
+        <!-- Filters Section -->
+        <div class="filters">
+          <h3>Destination</h3>
+          <div class="filter-list">
+            <label><input type="checkbox" checked> Luzon</label>
+            <label><input type="checkbox"> Visayas</label>
+            <label><input type="checkbox"> Mindanao</label>
+          </div>
+
+          <h3 class="section-gap">Travel Style</h3>
+          <div class="filter-list">
+            <label><input type="checkbox" checked> Budget</label>
+            <label><input type="checkbox"> Family</label>
+            <label><input type="checkbox"> Backpacking</label>
+            <label><input type="checkbox"> Luxury</label>
+            <label><input type="checkbox"> Solo</label>
+            <button>Set Filters</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
