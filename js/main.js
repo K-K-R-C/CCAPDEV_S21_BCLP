@@ -58,3 +58,9 @@ if (logoutButton) {
         window.location.href = "index.html";
     });
 }
+
+function changeLikeImage() {
+  var img = document.getElementById("like");
+  img.src = "../images/blue-like.png"; // Set the new image source
+}
+
