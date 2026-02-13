@@ -1,6 +1,6 @@
 //To be finished for MCO#2
 
-// localStorage.removeItem("isLoggedIn");
+//localStorage.removeItem("isLoggedIn");
 // ^^ uncomment this when testing out guest mode first
 
 let isLoggedIn = false;
