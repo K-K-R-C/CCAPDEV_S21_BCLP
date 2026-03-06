@@ -1,0 +1,29 @@
+{
+  "name": "ccapdev_s21_bclp",
+  "version": "1.0.0",
+  "description": "A forum-style web application focused on Philippine travel experiences.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/K-K-R-C/CCAPDEV_S21_BCLP.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/K-K-R-C/CCAPDEV_S21_BCLP/issues"
+  },
+  "homepage": "https://github.com/K-K-R-C/CCAPDEV_S21_BCLP#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "hbs": "^4.2.0",
+    "mongoose": "^9.2.4"
+  }
+}
