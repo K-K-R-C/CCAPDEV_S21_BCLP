@@ -15,29 +15,47 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get("/", (req, res) => {
-    res.render("index");
+// Home page
+app.get("/", (req, res) => 
+    res.render("index")
+);
+
+// Register
+app.get("/register", (req, res) => 
+    res.render("register")
+);
+
+app.post("/register", (req, res) => {
+  const { username, password } = req.body;
+  // TODO: save user in DB
+  res.redirect("/login"); // after registration, go to login
 });
 
+// Login
+app.get("/login", (req, res) => 
+    res.render("login")
+);
+
+app.post("/login", (req, res) => {
+  const { username, password } = req.body;
+  // TODO: check credentials
+  res.redirect("/"); // go to home if correct
+});
+
+// Profile page
 app.get("/profile", (req, res) => {
-    res.render("profile");
+    res.render("profile"); // pass data
 });
 
+// Create post page
 app.get("/create-post", (req, res) => {
     res.render("create-post");
 });
 
-app.get("/post", (req, res) => {
-    res.render("post");
-});
-
-app.get("/register", (req, res) => {
-    res.render("register");
-});
-
-app.get("/login", (req, res) => {
-    res.render("login");
-});
+// Single post page
+app.get("/post/:id", (req, res) => 
+    res.render("post", { // pass post data
+}));
 
 
 app.listen(3000, () => {
