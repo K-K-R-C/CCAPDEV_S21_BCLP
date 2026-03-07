@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<head>
+    <title>GunitaPH</title>
+    <link rel="icon" href="/images/gunita-logo.png" type="image/png">
+    <link rel="stylesheet" href="/css/auth.css">
+    <script src="/js/main.js" defer></script>
+</head>
+<body>
+    <main class="layout">
+        <section class="left">
+            <h1 class="logo">Gunita</h1>
+            <p class="tagline">Maglakbay. Magkuwento. Mag-gunita.</p>
+            
+            <!-- Show error message if login failed i.e. username not found, wrong password--> 
+            {{#if error}}
+                <p class="error">{{error}}</p>
+            {{/if}}
+
+            <form action = "/login" method = "get">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter username" required minlength = "1">
+
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter password" required minlength = "4">
+
+                <button type="submit" id="loginButton">Login</button>
+            </form>
+        </section>
+
+        <section class="right">
+            <h2>Don't have an account yet?</h2>
+            <p>Register now and start sharing your travel stories!</p>
+            <a href="/register"><button type="button">Register</button></a>
+        </section>
+
+    </main>
+</body>
+</html>

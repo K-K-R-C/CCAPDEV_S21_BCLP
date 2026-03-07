@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GunitaPH</title>
+    <link rel="icon" href="/images/gunita-logo.png" type="image/png">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/posts.css">
+    <script src="/js/main.js" defer></script>
+  </head>
+
+  <body>
+    <div class="container">
+
+        <!-- Left Sidebar -->
+        <!-- LOGGED IN VIEW -->
+        {{#if user}}
+        <div class="left-sidebar" id="loggedInContainer">
+            <!-- Logo -->
+            <div class="logo">
+                <h1 class="name"><span>G</span>UNITA</h1>
+            </div>
+
+            <img src="/images/{{user.profilePic}}" class="profile-pic" alt="Profile Pic">
+            <h2><a href="/user/{{user.username}}" class="profile-link">{{user.username}}</a></h2>
+            <p>@{{user.handle}}</p>
+
+            <button>
+                <a href="/" class="sidebar-btn">
+                    <img src="/images/home-button.png" class="home-button" alt="Home">
+                    Home
+                </a>
+            </button>
+
+            <button>
+                <a href="/create-post" class="sidebar-btn">
+                    <img src="/images/new-post-button.png" class="new-post-button" alt="New Post">
+                    New Post
+                </a>
+            </button> 
+        </div>
+
+        <!-- LOGGED OUT VIEW -->
+        {{else}}
+        <div class="left-sidebar" id="loggedOutContainer">
+            <!-- Logo -->
+            <div class="logo">
+                <h1 class="name"><span>G</span>UNITA</h1>
+            </div>
+
+            <img src="/images/guest-profile.png" class="profile-pic" alt="Profile Pic">
+            <h2 style="color: #7f7f7f">guest</h2>
+            <button>
+              <a href="/register">
+                Sign up
+              </a>
+            </button>
+
+            <button>
+              <a href="/login">
+                Log in
+              </a>
+            </button>
+        </div>
+        {{/if}}
+
+        <!-- Feed -->
+        <div class="feed">
+
+            <!-- Loop through posts passed from Controller -->
+            {{#each posts}}
+            <div class="post">
+                <div class="post-header">
+                    <div class="user">
+                        <img src="/images/{{this.profilePic}}" class="profile-pic">
+                        <a href="/user/{{this.author}}" class="profile-link">
+                            <p>{{this.author}}</p>
+                        </a>
+                    </div>
+                    <span class="post-date">{{this.date}}</span>
+                </div>
+
+                <!-- Clickable post card that leads to post.html -->
+                <a href="/post/{{this._id}}" class="post-link">
+                    <div class="post-images">
+                        {{#each this.images}}
+                            <img src="/images/{{this}}" alt="Post image">
+                        {{/each}}
+                    </div>
+
+                    <div class="post-content">
+                        <p><strong>{{this.title}}</strong></p>
+                        <p>{{this.description}}</p>
+                    </div>
+                </a>
+
+                <!-- Post Footer -->
+                <div class="post-footer">
+                    <div class="interactions">
+                        <!-- Likes Counter -->
+                        <button onclick="changeLike('{{this._id}}')">
+                            <img src="/images/thumbs-up.png" class="icon">
+                        </button>
+                        <span class="counter">{{this.likes}}</span>
+
+                        <!-- Dislikes Counter -->
+                        <button onclick="changeDislike('{{this._id}}')">
+                            <img src="/images/thumbs-down.png" class="icon">
+                        </button>
+                        <span class="counter">{{this.dislikes}}</span>
+
+                        <!-- Comments -->
+                        <img src="/images/comment.png" class="icon">
+                        <span class="counter">{{this.commentCount}}</span>
+                    </div>
+
+                    <div class="hashtags">
+                        {{#each this.hashtags}}
+                            <span>#{{this}}</span>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="right-sidebar">
+            <!-- Search Bar -->
+            <div class="searchbar">
+                <form>
+                    <img src="/images/search-icon.png" alt="Search" class="search-icon">
+                    <input type="text" placeholder="Search...">
+                </form>
+            </div>
+
+            <!-- Trending Section -->
+            <div class="trending">
+                <h3>Top 3 Trending</h3>
+                <ul>
+                    <li>#EntitledForeigners</li>
+                    <li>#ValentinesDay</li>
+                    <li>#HappySinglesDay</li>
+                </ul>
+            </div>
+
+            <!-- Filters Section -->
+            <div class="filters">
+                <h3>Destination</h3>
+                <div class="filter-list">
+                    <label><input type="checkbox" checked> Luzon</label>
+                    <label><input type="checkbox"> Visayas</label>
+                    <label><input type="checkbox"> Mindanao</label>
+                </div>
+
+                <h3 class="section-gap">Travel Style</h3>
+                <div class="filter-list">
+                    <label><input type="checkbox" checked> Budget</label>
+                    <label><input type="checkbox"> Family</label>
+                    <label><input type="checkbox"> Backpacking</label>
+                    <label><input type="checkbox"> Luxury</label>
+                    <label><input type="checkbox"> Solo</label>
+                    <button>Set Filters</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
