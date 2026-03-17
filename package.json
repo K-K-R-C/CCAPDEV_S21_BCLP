@@ -24,7 +24,10 @@
   },
   "homepage": "https://github.com/K-K-R-C/CCAPDEV_S21_BCLP#readme",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "express": "^5.2.1",
+    "express-handlebars": "^8.0.6",
+    "express-session": "^1.19.0",
     "hbs": "^4.2.0",
     "mongoose": "^9.2.4"
   }

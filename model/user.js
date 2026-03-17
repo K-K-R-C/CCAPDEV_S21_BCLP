@@ -31,7 +31,7 @@ const UserSchema = new mongoose.Schema
     profilePic:
     {
         type: String, 
-        default: '/MCO1/images/guest-profile.png'
+        default: 'guest-profile.png'
     },
 
     location:

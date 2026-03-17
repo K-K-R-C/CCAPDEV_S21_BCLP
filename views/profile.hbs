@@ -22,7 +22,7 @@
                 <h1 class="name"><span>G</span>UNITA</h1>
             </div>
 
-            <img src="/images/{{user.profilePic}}" class="profile-pic" alt="Profile Pic">
+            <img src="{{user.profilePic}}" class="profile-pic" alt="Profile Pic">
             <h2><a href="/user/{{user.username}}" class="profile-link">{{user.username}}</a></h2>
             <p>@{{user.handle}}</p>
 
@@ -73,8 +73,8 @@
               <div class="cover"></div>
 
               <div class="profile-row">
-                <a href="/images/{{profile.profilePic}}">
-                  <img src="/images/{{profile.profilePic}}" alt="Profile Picture" class="avatar xl">
+                <a href="{{profile.profilePic}}">
+                  <img src="{{profile.profilePic}}" alt="Profile Picture" class="avatar xl">
                 </a>
 
                 <div class="profile-meta">
@@ -113,21 +113,21 @@
 
                 <div class="post-header">
                     <div class="user">
-                        <img src="/images/{{this.authorProfilePic}}" class="profile-pic" alt="Profile Pic">
-                        <p>{{this.author}}</p>
+                        <img src="{{this.author.ProfilePic}}" class="profile-pic" alt="Profile Pic">
+                        <p>{{this.author.username}}</p>
                     </div>
-                    <span class="post-date">{{this.date}}</span>
+                    <span class="post-date">{{formatDate this.createdAt}}</span>
                 </div>
 
                 <div class="post-images">
                     {{#each this.images}}
-                    <img src="/images/{{this}}" alt="Post Image">
+                    <img src="{{this}}" alt="Post Image">
                     {{/each}}
                 </div>
 
                 <div class="post-content">
                     <p><strong>{{this.title}}</strong></p>
-                    <p>{{this.description}}</p>
+                    <p>{{this.body}}</p>
                 </div>
 
                 <div class="post-footer">
@@ -135,12 +135,12 @@
                         <button onclick="changeLike('{{this._id}}')">
                             <img src="/images/thumbs-up.png" class="icon">
                         </button>
-                        <span class="counter">{{this.likes}}</span>
+                        <span class="counter">{{this.upvotes.length}}</span>
 
                         <button onclick="changeDislike('{{this._id}}')">
                             <img src="/images/thumbs-down.png" class="icon">
                         </button>
-                        <span class="counter">{{this.dislikes}}</span>
+                        <span class="counter">{{this.downvotes.length}}</span>
 
                         <img src="/images/comment.png" class="icon">
                         <span class="counter">{{this.commentCount}}</span>
@@ -162,13 +162,13 @@
             <h3 class="section-title">Recent Comments</h3>
 
             {{#each comments}}
-            <a href="/post/{{this.postId}}" class="comment-card">
+            <a href="/post/{{this.post._id}}" class="comment-card">
               <div class="comment-top">
                 <div class="comment-context">
-                  On: <strong>{{this.postTitle}}</strong> 
-                  by <span class="comment-author">@{{this.author}}</span>
+                  On: <strong>{{this.post.title}}</strong> 
+                  by <span class="comment-author">@{{this.author.username}}</span>
                 </div>
-                <span class="comment-time">{{this.date}}</span>
+                <span class="comment-time">{{formatDate this.createdAt}}</span>
               </div>
               <p class="comment-text">
                 {{this.text}}

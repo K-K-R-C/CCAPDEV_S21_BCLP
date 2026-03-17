@@ -26,7 +26,7 @@ const seedData = async () =>
                 password: 'trestres123', 
                 bio: 'Meow meow meow meow meow meow meow', 
                 location: 'Manila, Philippines', 
-                profilePic: '/MCO1/images/profile.jpg', 
+                profilePic: '/images/profile.jpg', 
                 followers: 100000, 
                 following: 1, 
                 postCount: 1
@@ -38,7 +38,7 @@ const seedData = async () =>
                 password: 'karlkarl123', 
                 bio: 'YOLO', 
                 location: 'Cebu, Philippines', 
-                profilePic: '/MCO1/images/kaloyprofile.jpg', 
+                profilePic: '/images/kaloyprofile.jpg', 
                 followers: 100000, 
                 following: 1, 
                 postCount: 1
@@ -50,7 +50,7 @@ const seedData = async () =>
                 password: 'ventvent123', 
                 bio: 'Travel lover 🌴 Always planning the next family trip.', 
                 location: 'Cebu, Philippines', 
-                profilePic: '/MCO1/images/ventilogzprofile.jpg',
+                profilePic: '/images/ventilogzprofile.jpg',
                 followers: 3200,
                 following: 120,
                 postCount: 1
@@ -62,7 +62,7 @@ const seedData = async () =>
                 password: 'ophiophi123', 
                 bio: 'Hiking + sunrise pics 🌄 Always chasing fresh air and mountain views.', 
                 location: 'Benguet, Philippines', 
-                profilePic: '/MCO1/images/ophiucheprofile.jpg',
+                profilePic: '/images/ophiucheprofile.jpg',
                 followers: 8400,
                 following: 410,
                 postCount: 1
@@ -87,8 +87,8 @@ const seedData = async () =>
                 title: 'Finally touching grass <3', 
                 body: 'Back in Boracay after a long semester and it still feels unreal. White Beach in the afternoon hits different — soft sand, clear water, and that golden sunset glow. Sometimes you just need a quick island reset.', 
                 author: users[0]._id, 
-                images: ['/MCO1/images/boracay1.jpg', '/MCO1/images/boracay2.jpg'], 
-                hashtags: ['#Beachin\'', '#Hot', '#Tan'], 
+                images: ['/images/boracay1.jpg', '/images/boracay2.jpg'], 
+                hashtags: ['Beachin\'', 'Hot', 'Tan'], 
                 commentCount: 15,
                 upvotes: [],
                 downvotes: []
@@ -98,8 +98,8 @@ const seedData = async () =>
                 title: 'Dumaguete is such a hidden gem!', 
                 body: 'You should visit this place guys! Beautiful place and people here are very nice. It\'s a must-visit place in the Philippines.', 
                 author: users[1]._id, 
-                images: ['/MCO1/images/kaloypost1.jpeg', '/MCO1/images/kaloypost2.jpg', '/MCO1/images/kaloypost3.jpg'], 
-                hashtags: ['#Dumaguete', '#HiddenGem', '#TravelPhilippines'], 
+                images: ['/images/kaloypost1.jpeg', '/images/kaloypost2.jpg', '/images/kaloypost3.jpg'], 
+                hashtags: ['Dumaguete', 'HiddenGem', 'TravelPhilippines'], 
                 commentCount: 3,
                 upvotes: [],
                 downvotes: []
@@ -109,8 +109,8 @@ const seedData = async () =>
                 title: 'Any place to visit in Bohol?', 
                 body: 'I am planning to visit Bohol with my family soon. Any recommendations guys? Anong must-try there?', 
                 author: users[2]._id, 
-                images: ['/MCO1/images/ventilogzpost1.jpg'], 
-                hashtags: ['#Bohol', '#TravelPhilippines', '#FamilyTrip'], 
+                images: ['/images/ventilogzpost1.jpg'], 
+                hashtags: ['Bohol', 'TravelPhilippines', 'FamilyTrip'], 
                 commentCount: 5,
                 upvotes: [],
                 downvotes: []
@@ -120,8 +120,8 @@ const seedData = async () =>
                 title: 'Morning hikes hit different 🌄 Fresh air, zero stress 😌', 
                 body: 'Went to hike with my boyfriend in Mt. Pulag!', 
                 author: users[3]._id, 
-                images: ['/MCO1/images/ophiuchepost1.jpg'], 
-                hashtags: ['#MtPulag', '#Hiking', '#NatureLovers'], 
+                images: ['/images/ophiuchepost1.jpg'], 
+                hashtags: ['MtPulag', 'Hiking', 'NatureLovers'], 
                 commentCount: 0,
                 upvotes: [],
                 downvotes: []
@@ -131,8 +131,8 @@ const seedData = async () =>
                 title: 'Tagaytay mornings are everything @CubiCafe', 
                 body: 'Seriously, the view of Taal never gets old. Foggy, fresh, and perfect coffee weather.', 
                 author: users[4]._id, 
-                images: ['/MCO1/images/monamipost.jpg'], 
-                hashtags: ['#Tagaytay', '#MorningViews', '#CoffeeLovers'], 
+                images: ['/images/monamipost.jpg'], 
+                hashtags: ['Tagaytay', 'MorningViews', 'CoffeeLovers'], 
                 commentCount: 0,
                 upvotes: [],
                 downvotes: []

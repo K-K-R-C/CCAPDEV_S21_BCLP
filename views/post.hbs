@@ -22,7 +22,7 @@
                 <h1 class="name"><span>G</span>UNITA</h1>
             </div>
 
-            <img src="/images/{{user.profilePic}}" class="profile-pic" alt="Profile Pic">
+            <img src="{{user.profilePic}}" class="profile-pic" alt="Profile Pic">
             <h2><a href="/user/{{user.username}}" class="profile-link">{{user.username}}</a></h2>
             <p>@{{user.handle}}</p>
 
@@ -70,23 +70,23 @@
             <div class="post detailed-post">  <!-- Opens .post -->
                 <div class="post-header">
                     <div class="user">
-                        <img src="/images/{{post.authorProfilePic}}" class="profile-pic" alt="Profile Pic">
-                        <a href="/user/{{post.author}}" class="profile-link">
-                            <p>{{post.author}}</p>
+                        <img src="{{post.author.profilePic}}" class="profile-pic" alt="Profile Pic">
+                        <a href="/user/{{post.author.username}}" class="profile-link">
+                            <p>{{post.author.username}}</p>
                         </a>
                     </div>
-                    <span class="post-date">{{post.date}}</span>
+                    <span class="post-date">{{post.createdAt}}</span>
                 </div>
 
                 <div class="post-images">
                     {{#each post.images}}
-                        <img src="/images/{{this}}" alt="Post Image">
+                        <img src="{{this}}" alt="Post Image">
                     {{/each}}
                 </div>
 
                 <div class="post-content">
                     <p><strong>{{post.title}}</strong></p>
-                    <p>{{post.description}}</p>
+                    <p>{{post.body}}</p>
                 </div>
 
                 <div class="post-footer">
@@ -94,12 +94,12 @@
                         <button onclick="changeLike('{{post._id}}')">
                             <img src="/images/thumbs-up.png" class="icon">
                         </button>
-                        <span class="counter">{{post.likes}}</span>
+                        <span class="counter">{{post.upvotes.length}}</span>
 
                         <button onclick="changeDislike('{{post._id}}')">
                             <img src="/images/thumbs-down.png" class="icon">
                         </button>
-                        <span class="counter">{{post.dislikes}}</span>
+                        <span class="counter">{{post.downvotes.length}}</span>
 
                         <img src="/images/comment.png" class="icon">
                         <span class="counter">{{post.commentCount}}</span>
@@ -119,14 +119,14 @@
 
                     {{#each comments}}
                     <div class="comment">
-                        <strong><a href="/user/{{this.author}}">{{this.author}}</a></strong>
+                        <strong><a href="/user/{{this.author.username}}">{{this.author.username}}</a></strong>
                         <p>{{this.text}}</p>
 
                         {{#if this.replies}}
                         <div class="replies">
                             {{#each this.replies}}
                             <div class="comment">
-                                <strong><a href="/user/{{this.author}}">{{this.author}}</a></strong>
+                                <strong><a href="/user/{{this.author.username}}">{{this.author.username}}</a></strong>
                                 <p>{{this.text}}</p>
                             </div>
                             {{/each}}

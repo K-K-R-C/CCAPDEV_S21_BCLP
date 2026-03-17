@@ -21,7 +21,7 @@
                 <h1 class="name"><span>G</span>UNITA</h1>
             </div>
 
-            <img src="/images/{{user.profilePic}}" class="profile-pic" alt="Profile Pic">
+            <img src="{{user.profilePic}}" class="profile-pic" alt="Profile Pic">
             <h2><a href="/user/{{user.username}}" class="profile-link">{{user.username}}</a></h2>
             <p>@{{user.handle}}</p>
 
@@ -72,9 +72,9 @@
             <div class="post">
                 <div class="post-header">
                     <div class="user">
-                        <img src="/images/{{this.profilePic}}" class="profile-pic">
-                        <a href="/user/{{this.author}}" class="profile-link">
-                            <p>{{this.author}}</p>
+                        <img src="{{this.author.profilePic}}" class="profile-pic">
+                        <a href="/user/{{this.author.username}}" class="profile-link">
+                            <p>{{this.author.username}}</p>
                         </a>
                     </div>
                     <span class="post-date">{{this.date}}</span>
@@ -84,13 +84,13 @@
                 <a href="/post/{{this._id}}" class="post-link">
                     <div class="post-images">
                         {{#each this.images}}
-                            <img src="/images/{{this}}" alt="Post image">
+                            <img src="{{this}}" alt="Post image">
                         {{/each}}
                     </div>
 
                     <div class="post-content">
                         <p><strong>{{this.title}}</strong></p>
-                        <p>{{this.description}}</p>
+                        <p>{{this.body}}</p>
                     </div>
                 </a>
 
@@ -101,13 +101,13 @@
                         <button onclick="changeLike('{{this._id}}')">
                             <img src="/images/thumbs-up.png" class="icon">
                         </button>
-                        <span class="counter">{{this.likes}}</span>
+                        <span class="counter">{{this.upvotes.length}}</span>
 
                         <!-- Dislikes Counter -->
                         <button onclick="changeDislike('{{this._id}}')">
                             <img src="/images/thumbs-down.png" class="icon">
                         </button>
-                        <span class="counter">{{this.dislikes}}</span>
+                        <span class="counter">{{this.downvotes.length}}</span>
 
                         <!-- Comments -->
                         <img src="/images/comment.png" class="icon">
