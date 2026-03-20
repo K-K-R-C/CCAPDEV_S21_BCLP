@@ -43,7 +43,7 @@ exports.login = async (req, res) => {
     try {
         const { username, password } = req.body;
 
-        const user = await User.findOne({ username }).lean();
+        const user = await User.findOne({ username });
         if (!user) {
             return res.render("login", { error: "Username not found!" });
         }

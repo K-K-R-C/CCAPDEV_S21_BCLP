@@ -75,7 +75,7 @@
                             <p>{{post.author.username}}</p>
                         </a>
                     </div>
-                    <span class="post-date">{{post.createdAt}}</span>
+                    <span class="post-date">{{formatDate post.createdAt}}</span>
                 </div>
 
                 <div class="post-images">
@@ -91,12 +91,12 @@
 
                 <div class="post-footer">
                     <div class="interactions">
-                        <button onclick="changeLike('{{post._id}}')">
+                        <button class="like-btn" data-post-id="{{post._id}}">
                             <img src="/images/thumbs-up.png" class="icon">
                         </button>
                         <span class="counter">{{post.upvotes.length}}</span>
 
-                        <button onclick="changeDislike('{{post._id}}')">
+                        <button class="dislike-btn" data-post-id="{{post._id}}">
                             <img src="/images/thumbs-down.png" class="icon">
                         </button>
                         <span class="counter">{{post.downvotes.length}}</span>
@@ -113,20 +113,35 @@
                 </div>
 
                 <!-- Comments Section -->
-                <div class="comments-section">  <!-- Opens .comments-section -->
-                    <h3>Comments</h3>
-                    <a href="/post/{{post._id}}/comment" class="add-comment-link">Add a Comment</a>
+                <div class="comments-section">
+                    <h3>
+                        {{#if post.commentCount}}
+                            {{post.commentCount}} Comments
+                        {{else}}
+                            Be the first to comment!
+                        {{/if}}
+                    </h3>
 
                     {{#each comments}}
                     <div class="comment">
-                        <strong><a href="/user/{{this.author.username}}">{{this.author.username}}</a></strong>
+                        <div class="comment-header">
+                            <img src="{{this.author.profilePic}}" class="profile-pic-small">
+                            <div>
+                                <strong><a href="/user/{{this.author.username}}">{{this.author.username}}</a></strong>
+                                <span class="comment-date">{{formatDate this.createdAt}}</span>
+                            </div>
+                        </div>
                         <p>{{this.text}}</p>
 
                         {{#if this.replies}}
                         <div class="replies">
                             {{#each this.replies}}
-                            <div class="comment">
-                                <strong><a href="/user/{{this.author.username}}">{{this.author.username}}</a></strong>
+                            <div class="comment reply">
+                                <img src="{{this.author.profilePic}}" class="profile-pic-small">
+                                <div>
+                                    <strong><a href="/user/{{this.author.username}}">{{this.author.username}}</a></strong>
+                                    <span class="comment-date">{{formatDate this.createdAt}}</span>
+                                </div>
                                 <p>{{this.text}}</p>
                             </div>
                             {{/each}}
@@ -135,7 +150,22 @@
                     </div>
                     {{/each}}
 
-                </div>  <!-- Closes .comments-section -->
+                    <!-- INLINE COMMENT FORM -->
+                    {{#if user}}
+                    <div class="add-comment-section">
+                        <h4>Add a Comment</h4>
+                        <form action="/post/{{post._id}}/comment" method="POST">
+                            <textarea name="text" placeholder="Share your thoughts..." rows="3" maxlength="500" required></textarea>
+                            <div class="form-buttons">
+                                <button type="button" class="cancel-btn" onclick="window.history.back()">Cancel</button>
+                                <button type="submit" class="post-btn">Post Comment</button>
+                            </div>
+                        </form>
+                    </div>
+                    {{else}}
+                    <p class="login-prompt"><a href="/login">Log in to comment</a></p>
+                    {{/if}}
+                </div> <!-- Closes .comments -->
             </div>  <!-- Closes .post -->
         </div>  <!-- Closes .single-post -->
 

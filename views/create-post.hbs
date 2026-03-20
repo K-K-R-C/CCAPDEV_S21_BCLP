@@ -8,6 +8,7 @@
       <link rel = "stylesheet" href = "/css/forms.css">
   </head>
 
+    <script src="/js/main.js" defer></script>
   <body>
       <div class="container">
 
@@ -99,9 +100,10 @@
                       <div class = "form-group">
                           <label for = "photo">Upload Photo</label>
 
-                          <div class = "upload-box">
-                              <input type = "file" id = "photo" name = "photo" accept = "image/*" required>
-                              <p>Drag photo here or click to upload</p>
+                          <div class = "upload-box" id = "uploadBox">
+                              <input type = "file" id = "photo" name = "photo" accept = "image/*" multiple required>
+                              <p id = "uploadText">Drag photo here or click to upload</p>
+                              <img id="preview" style="display: none; max-width: 100%; max-height: 200px; margin-top: 10px; border-radius: 8px;">
                           </div>
                       </div>
 

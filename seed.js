@@ -3,10 +3,13 @@ const User = require('./model/user');
 const Post = require('./model/post');
 const Comment = require('./model/comment');
 
+// For hashing
+const bcrypt = require('bcrypt');
+
 // Connect to MongoDB
 mongoose.connect('mongodb://127.0.0.1/gunitaph')
     .then(() => console.log('MongoDB connected for seeding'))
-    .catch((err) => console.log('MonoDB connection error: ', err));
+    .catch((err) => console.log('MongoDB connection error: ', err));
 
 // To populate database with sample data
 const seedData = async () => 
@@ -18,68 +21,73 @@ const seedData = async () =>
         await Post.deleteMany({});
         await Comment.deleteMany({});
 
-        // 1.) Create 5 users
-        const users = await User.create([
-            {
-                username: 'batmeow', 
-                handle: '@dlsu-pusa', 
-                password: 'trestres123', 
-                bio: 'Meow meow meow meow meow meow meow', 
-                location: 'Manila, Philippines', 
-                profilePic: '/images/profile.jpg', 
-                followers: 100000, 
-                following: 1, 
-                postCount: 1
-            }, 
+        // 1.) Create 5 users (1 by 1 for hashing)
+        const batmeow = await new User
+        ({
+            username: 'batmeow',
+            handle: '@dlsu-pusa',
+            password: await bcrypt.hash('trestres123', 10),
+            bio: 'Meow meow meow meow meow meow meow',
+            location: 'Manila, Philippines',
+            profilePic: '/images/profile.jpg',
+            followers: 100000,
+            following: 1,
+            postCount: 1
+        }).save();
 
-            {
-                username: 'kaloy', 
-                handle: '@yolakay', 
-                password: 'karlkarl123', 
-                bio: 'YOLO', 
-                location: 'Cebu, Philippines', 
-                profilePic: '/images/kaloyprofile.jpg', 
-                followers: 100000, 
-                following: 1, 
-                postCount: 1
-            }, 
+        const kaloy = await new User
+        ({
+            username: 'kaloy',
+            handle: '@yolakay',
+            password: await bcrypt.hash('karlkarl123', 10),
+            bio: 'YOLO',
+            location: 'Cebu, Philippines',
+            profilePic: '/images/kaloyprofile.jpg',
+            followers: 100000,
+            following: 1,
+            postCount: 1
+        }).save();
 
-            {
-                username: 'ventilogz', 
-                handle: '@travelMaster',
-                password: 'ventvent123', 
-                bio: 'Travel lover 🌴 Always planning the next family trip.', 
-                location: 'Cebu, Philippines', 
-                profilePic: '/images/ventilogzprofile.jpg',
-                followers: 3200,
-                following: 120,
-                postCount: 1
-            }, 
+        const ventilogz = await new User
+        ({
+            username: 'ventilogz',
+            handle: '@travelMaster',
+            password: await bcrypt.hash('ventvent123', 10),
+            bio: 'Travel lover 🌴 Always planning the next family trip.',
+            location: 'Cebu, Philippines',
+            profilePic: '/images/ventilogzprofile.jpg',
+            followers: 3200,
+            following: 120,
+            postCount: 1
+        }).save();
 
-            {
-                username: 'ophiuche', 
-                handle: '@serEndip!ty', 
-                password: 'ophiophi123', 
-                bio: 'Hiking + sunrise pics 🌄 Always chasing fresh air and mountain views.', 
-                location: 'Benguet, Philippines', 
-                profilePic: '/images/ophiucheprofile.jpg',
-                followers: 8400,
-                following: 410,
-                postCount: 1
-            }, 
+        const ophiuche = await new User
+        ({
+            username: 'ophiuche',
+            handle: '@serEndip!ty',
+            password: await bcrypt.hash('ophiophi123', 10),
+            bio: 'Hiking + sunrise pics 🌄 Always chasing fresh air and mountain views.',
+            location: 'Benguet, Philippines',
+            profilePic: '/images/ophiucheprofile.jpg',
+            followers: 8400,
+            following: 410,
+            postCount: 1
+        }).save();
 
-            {
-                username: 'monami', 
-                handle: '@minomikami', 
-                password: 'monamona123', 
-                bio: 'Coffee lover ☕ | Slow mornings & scenic views 🌄', 
-                location: 'Tagaytay, Philippines', 
-                profilePic: '/images/monami.jpg',
-                followers: 12300,
-                following: 890,
-                postCount: 1
-            }
-        ])
+        const monami = await new User
+        ({
+            username: 'monami',
+            handle: '@minomikami',
+            password: await bcrypt.hash('monamona123', 10),
+            bio: 'Coffee lover ☕ | Slow mornings & scenic views 🌄',
+            location: 'Tagaytay, Philippines',
+            profilePic: '/images/monami.jpg',
+            followers: 12300,
+            following: 890,
+            postCount: 1
+        }).save();
+
+        const users = [batmeow, kaloy, ventilogz, ophiuche, monami];
 
         // 2.) Create 5 posts
         const posts = await Post.create([

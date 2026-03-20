@@ -247,19 +247,6 @@
 /* --------------------------- */
 /* Nested Comments GUI (no JS) */
 /* --------------------------- */
-
-.comments-section {
-  margin-top: 20px;
-  padding-top: 15px;
-  border-top: 1px solid #eee;
-}
-
-.comments-section h3 {
-  margin-bottom: 12px;
-  font-size: 1rem;
-  color: var(--dark-container);
-}
-
 /* Each comment as a small "card row" */
 .comment {
   position: relative;
@@ -299,18 +286,6 @@
   font-size: 12px;
   color: #777;
   white-space: nowrap;
-}
-
-/* Username link */
-.comment strong a {
-  color: var(--dark-container);
-  text-decoration: none;
-  font-weight: 800;
-}
-
-.comment strong a:hover {
-  color: var(--hover-link);
-  text-decoration: underline;
 }
 
 .comment-text {
@@ -427,4 +402,129 @@
   color: white;
   border: none;
   cursor: pointer;
+}
+
+/* Inline Comment Form */
+.add-comment-section {
+    margin-top: 25px;
+    padding: 20px 10px;
+    border-top: 1px solid #eee;
+    width: calc(100% + 20px);
+    margin-left: -10px;
+    margin-right: -10px;
+    background: linear-gradient(to right, transparent 10px, #f9f9f9 10px, #f9f9f9 calc(100% - 10px), transparent calc(100% - 10px));
+}
+
+.add-comment-section h4 {
+    margin-bottom: 12px;
+    font-size: 1rem;
+    color: var(--dark-container);
+    font-weight: 600;
+}
+
+.comment-form {
+    background: transparent;
+    border: none;
+    padding: 0;
+    width: 100%;
+}
+
+.comment-form textarea {
+    display: block;
+    width: 100% !important;
+    box-sizing: border-box;
+    padding: 16px 24px;
+    min-height: 100px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 15px;
+    resize: vertical;
+}
+
+.comment-form textarea:focus {
+    outline: none;
+    border-color: var(--hover-link);
+    box-shadow: 0 0 0 3px rgba(112, 150, 186, 0.1);
+}
+
+.login-prompt {
+    text-align: center;
+    padding: 20px;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.login-prompt a {
+    color: var(--hover-link);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-prompt a:hover {
+    color: var(--hover-container);
+    text-decoration: underline;
+}
+
+.profile-pic-small {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.comment-date {
+    font-size: 0.85rem;
+    color: #666;
+    margin-left: 8px;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #e9ecef;
+}
+
+.cancel-btn, .post-btn {
+    flex: 1;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    max-width: 160px;
+}
+
+.cancel-btn {
+    background: var(--text-main);
+    color: var(--container-bg);
+}
+
+.cancel-btn:hover {
+    background: #555;
+    transform: translateY(-1px);
+}
+
+.post-btn {
+    background: var(--hover-link);
+    color: var(--container-bg);
+}
+
+.post-btn:hover {
+    background: var(--hover-container);
+    transform: translateY(-1px);
 }

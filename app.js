@@ -13,24 +13,31 @@ mongoose.connect("mongodb://127.0.0.1/gunitaph")
 
 app.engine("hbs", hbs.engine({
     extname: ".hbs",
+    allowProtoPropertiesByDefault: true,
     defaultLayout: false,
     allowProtoPropertiesByDefault: true,
     allowProtoMethodsByDefault: true,
     helpers: {
         formatDate: (date) => {
             return new Date(date).toLocaleDateString("en-PH", {
-                year: "numeric",
-                month: "long",
-                day: "numeric"
+                month: "2-digit",
+                day: "2-digit",
+                year: "2-digit"
             });
         }
+    },
+    runtimeOptions:
+    {
+        allowProtoPropertiesByDefault: true,
+        allowProtoMethodsByDefault: true
     }
 }));
 
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "views"));
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
+app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

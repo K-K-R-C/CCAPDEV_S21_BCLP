@@ -77,7 +77,7 @@
                             <p>{{this.author.username}}</p>
                         </a>
                     </div>
-                    <span class="post-date">{{this.date}}</span>
+                    <span class="post-date">{{formatDate this.createdAt}}</span>
                 </div>
 
                 <!-- Clickable post card that leads to post.html -->
@@ -98,13 +98,13 @@
                 <div class="post-footer">
                     <div class="interactions">
                         <!-- Likes Counter -->
-                        <button onclick="changeLike('{{this._id}}')">
+                        <button class="like-btn" data-post-id="{{this._id}}">
                             <img src="/images/thumbs-up.png" class="icon">
                         </button>
                         <span class="counter">{{this.upvotes.length}}</span>
 
                         <!-- Dislikes Counter -->
-                        <button onclick="changeDislike('{{this._id}}')">
+                        <button class="dislike-btn" data-post-id="{{this._id}}">
                             <img src="/images/thumbs-down.png" class="icon">
                         </button>
                         <span class="counter">{{this.downvotes.length}}</span>

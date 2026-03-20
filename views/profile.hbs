@@ -95,13 +95,27 @@
                   </p>
                 </div>
 
-                <!-- PROFILE ACTIONS (LOGGED OUT VERSION) -->
+                <!-- PROFILE ACTIONS -->
                 <div class="profile-actions">
-                  {{#unless isOwner}}
-                    <a href="/user/{{profile.username}}">
-                      <button class="dark-btn">Follow</button>
+                  {{#if user}}
+                    {{#if isOwner}}
+                      <!-- Owner sees: Edit + Logout -->
+                      <a href="/edit-profile">
+                        <button class="dark-btn">Edit profile</button>
+                      </a>
+                      <button type="button" class="dark-btn" id="logoutButton">Log out</button>
+                    {{else}}
+                      <!-- Visitor sees: Follow -->
+                      <a href="/user/{{profile.username}}">
+                        <button class="dark-btn">Follow</button>
+                      </a>
+                    {{/if}}
+                  {{else}}
+                    <!-- Guest sees: Login -->
+                    <a href="/login">
+                      <button class="dark-btn">Log in to follow</button>
                     </a>
-                  {{/unless}}
+                  {{/if}}
                 </div>
               </div>
           </div>
@@ -113,7 +127,7 @@
 
                 <div class="post-header">
                     <div class="user">
-                        <img src="{{this.author.ProfilePic}}" class="profile-pic" alt="Profile Pic">
+                        <img src="{{this.author.profilePic}}" class="profile-pic" alt="Profile Pic">
                         <p>{{this.author.username}}</p>
                     </div>
                     <span class="post-date">{{formatDate this.createdAt}}</span>
@@ -132,12 +146,12 @@
 
                 <div class="post-footer">
                     <div class="interactions">
-                        <button onclick="changeLike('{{this._id}}')">
+                        <button class="like-btn" data-post-id="{{this._id}}">
                             <img src="/images/thumbs-up.png" class="icon">
                         </button>
                         <span class="counter">{{this.upvotes.length}}</span>
 
-                        <button onclick="changeDislike('{{this._id}}')">
+                        <button class="dislike-btn" data-post-id="{{this._id}}">
                             <img src="/images/thumbs-down.png" class="icon">
                         </button>
                         <span class="counter">{{this.downvotes.length}}</span>

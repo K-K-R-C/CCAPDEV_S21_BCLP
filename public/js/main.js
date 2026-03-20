@@ -39,7 +39,7 @@ let registerButton = document.getElementById("registerButton");
 if (registerButton) {
     registerButton.addEventListener("click", function() {
         localStorage.setItem("isLoggedIn", "true");
-        window.location.href = "index.html";
+        window.location.href = "/";
     });
 }
 
@@ -47,201 +47,99 @@ let loginButton = document.getElementById("loginButton");
 if (loginButton) {
     loginButton.addEventListener("click", function() {
         localStorage.setItem("isLoggedIn", "true");
-        window.location.href = "index.html";
+        window.location.href = "/";
     });
 }
 
 let logoutButton = document.getElementById("logoutButton");
 if (logoutButton) {
-    logoutButton.addEventListener("click", function() {
+    logoutButton.addEventListener("click", async function() {
+        // Client side
         localStorage.removeItem("isLoggedIn");
-        window.location.href = "index.html";
+
+        // Server side (destroy session)
+        try
+        {
+            await fetch("/logout", { method: "GET" });
+        }
+        catch (e)
+        {
+            console.log("Logout fetch failed, but local cleared");
+        }
+
+        window.location.href = "/";
     });
 }
 
-let liked = false;
-let disliked = false;
+document.addEventListener("click", function(e)
+{
+    // Find post container
+    const postContainer = e.target.closest(".post");
+    if (!postContainer) return;
 
-function changeLikeImage() {
-  var likeImg = document.getElementById("like");
-  var dislikeImg = document.getElementById("dislike");
+    const likeBtn = postContainer.querySelector(".like-btn img");
+    const dislikeBtn = postContainer.querySelector(".dislike-btn img");
 
-  if (!liked) {
-    likeImg.src = "../images/blue-like.png";
-    liked = true;
+    if (!likeBtn || !dislikeBtn) return;
 
-    dislikeImg.src = "../images/thumbs-down.png";
-    disliked = false;
+    // Like button
+    if (e.target.closest('.like-btn'))
+    {
+        // Reset dislike
+        dislikeBtn.src = "/images/thumbs-down.png";
 
-  } else {
-    likeImg.src = "../images/thumbs-up.png";
-    liked = false;
-  }
-}
+        // Toggle like
+        if (likeBtn.src.includes("thumbs-up.png")) {
+            likeBtn.src = "/images/blue-like.png";
+        } else {
+            likeBtn.src = "/images/thumbs-up.png";
+        }
+    }
 
-function changeDislikeImage() {
-  var likeImg = document.getElementById("like");
-  var dislikeImg = document.getElementById("dislike");
+    // Dislike button
+    if (e.target.closest(".dislike-btn")) {
+        // Reset like
+        likeBtn.src = "/images/thumbs-up.png";
 
-  if (!disliked) {
-    dislikeImg.src = "../images/red-dislike.png";
-    disliked = true;
+        // Toggle dislike
+        if (dislikeBtn.src.includes("thumbs-down.png")) {
+            dislikeBtn.src = "/images/red-dislike.png";
+        } else {
+            dislikeBtn.src = "/images/thumbs-down.png";
+        }
+    }
+});
 
-    likeImg.src = "../images/thumbs-up.png";
-    liked = false;
+// Image Preview for Create Post
+document.addEventListener("DOMContentLoaded", function(e) {
+    const photoInput = document.getElementById("photo");
+    const preview = document.getElementById("preview");
+    const uploadBox = document.getElementById("uploadBox");
+    const uploadText = document.getElementById('uploadText');
 
-  } else {
-    dislikeImg.src = "../images/thumbs-down.png";
-    disliked = false;
-  }
-}
+    if (photoInput)
+    {
+        photoInput.addEventListener("change", function(e) {
 
-let liked2 = false;
-let disliked2 = false;
+            const files = Array.from(e.target.files);
+            const firstFile = files[0];
 
-function changeLikeImage2() {
-  var likeImg2 = document.getElementById("like2");
-  var dislikeImg2 = document.getElementById("dislike2");
+            if (firstFile && firstFile.type.startsWith("image/")) {
+                const reader = new FileReader();
 
-  if (!liked2) {
-    likeImg2.src = "../images/blue-like.png";
-    liked2 = true;
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = "block";
+                    uploadBox.classList.add("has-image");
+                    uploadText.textContent = `${files.length} image${files.length > 1 ? 's' : ''} ready! (${firstFile.name})`;
+                };
 
-    dislikeImg2.src = "../images/thumbs-down.png";
-    disliked2 = false;
-
-  } else {
-    likeImg2.src = "../images/thumbs-up.png";
-    liked2 = false;
-  }
-}
-
-function changeDislikeImage2() {
-  var likeImg2 = document.getElementById("like2");
-  var dislikeImg2 = document.getElementById("dislike2");
-
-  if (!disliked2) {
-    dislikeImg2.src = "../images/red-dislike.png";
-    disliked2 = true;
-
-    likeImg2.src = "../images/thumbs-up.png";
-    liked2 = false;
-
-  } else {
-    dislikeImg2.src = "../images/thumbs-down.png";
-    disliked2 = false;
-  }
-}
-
-let liked3 = false;
-let disliked3 = false;
-
-function changeLikeImage3() {
-  var likeImg3 = document.getElementById("like3");
-  var dislikeImg3 = document.getElementById("dislike3");
-
-  if (!liked3) {
-    likeImg3.src = "../images/blue-like.png";
-    liked3 = true;
-
-    dislikeImg3.src = "../images/thumbs-down.png";
-    disliked3 = false;
-
-  } else {
-    likeImg3.src = "../images/thumbs-up.png";
-    liked3 = false;
-  }
-}
-
-function changeDislikeImage3() {
-  var likeImg3 = document.getElementById("like3");
-  var dislikeImg3 = document.getElementById("dislike3");
-
-  if (!disliked3) {
-    dislikeImg3.src = "../images/red-dislike.png";
-    disliked3 = true;
-
-    likeImg3.src = "../images/thumbs-up.png";
-    liked3 = false;
-
-  } else {
-    dislikeImg3.src = "../images/thumbs-down.png";
-    disliked3 = false;
-  }
-}
-
-let liked4 = false;
-let disliked4 = false
-
-function changeLikeImage4() {
-  var likeImg4 = document.getElementById("like4");
-  var dislikeImg4 = document.getElementById("dislike4");
-
-  if (!liked4) {
-    likeImg4.src = "../images/blue-like.png";
-    liked4 = true;
-
-    dislikeImg4.src = "../images/thumbs-down.png";
-    disliked4 = false;
-
-  } else {
-    likeImg4.src = "../images/thumbs-up.png";
-    liked4 = false;
-  }
-}
-
-function changeDislikeImage4() {
-  var likeImg4 = document.getElementById("like4");
-  var dislikeImg4 = document.getElementById("dislike4");
-
-  if (!disliked4) {
-    dislikeImg4.src = "../images/red-dislike.png";
-    disliked4 = true;
-
-    likeImg4.src = "../images/thumbs-up.png";
-    liked4 = false;
-
-  } else {
-    dislikeImg4.src = "../images/thumbs-down.png";
-    disliked4 = false;
-  }
-}
-
-let liked5 = false;
-let disliked5 = false
-
-function changeLikeImage5() {
-  var likeImg5 = document.getElementById("like5");
-  var dislikeImg5 = document.getElementById("dislike5");
-
-  if (!liked5) {
-    likeImg5.src = "../images/blue-like.png";
-    liked5 = true;
-
-    dislikeImg5.src = "../images/thumbs-down.png";
-    disliked5 = false;
-
-  } else {
-    likeImg5.src = "../images/thumbs-up.png";
-    liked5 = false;
-  }
-}
-
-function changeDislikeImage5() {
-  var likeImg5 = document.getElementById("like5");
-  var dislikeImg5 = document.getElementById("dislike5");
-
-  if (!disliked5) {
-    dislikeImg5.src = "../images/red-dislike.png";
-    disliked5 = true;
-
-    likeImg5.src = "../images/thumbs-up.png";
-    liked5 = false;
-
-  } else {
-    dislikeImg5.src = "../images/thumbs-down.png";
-    disliked5 = false;
-  }
-}
-
-
+                reader.readAsDataURL(firstFile);
+            } else {
+                preview.style.display = "none";
+                uploadBox.classList.remove("has-image");
+                uploadText.textContent = "Drag photo here or click to upload";
+            }
+        });
+    }
+});
