@@ -1,61 +1,6 @@
-//To be finished for MCO#2
-
-//localStorage.removeItem("isLoggedIn");
-// ^^ uncomment this when testing out guest mode first
-
-let isLoggedIn = false;
-
-let loggedIn = document.getElementById("loggedInContainer");
-let loggedOut = document.getElementById("loggedOutContainer");
-
-let loggedInProfile = document.getElementById("loggedInProfile");
-let loggedOutProfile = document.getElementById("loggedOutProfile");
-
-if (localStorage.getItem("isLoggedIn") === "true") {
-    isLoggedIn = true;
-}
-
-if (loggedIn && loggedOut) {
-    if (isLoggedIn) {
-        loggedOut.style.display = "none";
-        loggedIn.style.display = "block";
-    } else {
-        loggedIn.style.display = "none";
-        loggedOut.style.display = "block";
-    }
-}
-
-if (loggedInProfile && loggedOutProfile) {
-    if (isLoggedIn) {
-        loggedOutProfile.style.display = "none";
-        loggedInProfile.style.display = "block";
-    } else {
-        loggedInProfile.style.display = "none";
-        loggedOutProfile.style.display = "block";
-    }
-}
-
-let registerButton = document.getElementById("registerButton");
-if (registerButton) {
-    registerButton.addEventListener("click", function() {
-        localStorage.setItem("isLoggedIn", "true");
-        window.location.href = "/";
-    });
-}
-
-let loginButton = document.getElementById("loginButton");
-if (loginButton) {
-    loginButton.addEventListener("click", function() {
-        localStorage.setItem("isLoggedIn", "true");
-        window.location.href = "/";
-    });
-}
-
 let logoutButton = document.getElementById("logoutButton");
 if (logoutButton) {
     logoutButton.addEventListener("click", async function() {
-        // Client side
-        localStorage.removeItem("isLoggedIn");
 
         // Server side (destroy session)
         try
@@ -64,7 +9,7 @@ if (logoutButton) {
         }
         catch (e)
         {
-            console.log("Logout fetch failed, but local cleared");
+            console.log("Logout request failed");
         }
 
         window.location.href = "/";
