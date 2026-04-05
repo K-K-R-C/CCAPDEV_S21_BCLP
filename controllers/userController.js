@@ -17,14 +17,32 @@ exports.showRegister = (req, res) => {
 exports.register = async (req, res) => {
     try {
         const { username, password } = req.body;
+        const trimmedUsername = username ? username.trim() : "";
 
-        const existing = await User.findOne({ username });
+        // backend validation
+        if (!trimmedUsername || !password) 
+        {
+            return res.render("register", 
+            {
+                error: "Username and password are required."
+            });
+        }
+
+        if (password.length < 4) 
+        {
+            return res.render("register", 
+            {
+                error: "Password must be at least 4 characters long."
+            });
+        }
+
+        const existing = await User.findOne({ username: trimmedUsername });
         if (existing) {
             return res.render("register", { error: "Username already taken!" });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = new User({ username, handle: username, password: hashedPassword });
+        const user = new User({ username: trimmedUsername, handle: trimmedUsername, password: hashedPassword });
         await user.save();
 
         req.session.userId = user._id;
@@ -42,8 +60,17 @@ exports.showLogin = (req, res) => {
 exports.login = async (req, res) => {
     try {
         const { username, password } = req.body;
+        const trimmedUsername = username ? username.trim() : "";
 
-        const user = await User.findOne({ username });
+        // backend validation
+        if (!trimmedUsername || !password) 
+        {
+            return res.render("login", {
+                error: "Username and password are required."
+            });
+        }       
+
+        const user = await User.findOne({ username: trimmedUsername });
         if (!user) {
             return res.render("login", { error: "Username not found!" });
         }
@@ -62,6 +89,11 @@ exports.login = async (req, res) => {
 };
 
 exports.logout = (req, res) => {
-    req.session.destroy();
-    res.redirect("/login");
+    req.session.destroy((err) => {
+        if (err) {
+            console.error(err);
+            return res.redirect("/");
+        }
+        res.redirect("/login");
+    });
 };
