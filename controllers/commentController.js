@@ -6,6 +6,14 @@ exports.createComment = async (req, res) =>
     {
         if (!req.session.userId) return res.redirect("/login");
 
+        const text = req.body.text ? req.body.text.trim() : "";
+
+        // validates commnent text
+        if (!text) 
+        {
+            return res.redirect(`/post/${req.params.id}`);
+        }
+
         const comment = new Comment
         ({
             text: req.body.text.trim(),
