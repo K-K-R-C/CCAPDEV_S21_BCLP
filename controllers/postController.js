@@ -2,6 +2,7 @@ const Post = require("../model/Post");
 const User = require("../model/User");
 const Comment = require("../model/Comment");
 
+// Get all posts
 exports.getAllPosts = async (req, res) => {
     try {
         const posts = await Post.find()
@@ -24,6 +25,7 @@ exports.getAllPosts = async (req, res) => {
     }
 };
 
+// Get post
 exports.getPost = async (req, res) => {
     try {
 
@@ -55,6 +57,38 @@ exports.getPost = async (req, res) => {
     }
 };
 
+// Show create post
+exports.showCreatePost = async (req, res) => {
+    res.render("create-post");
+};
+
+// Create a post
+exports.createPost = async (req, res) => {
+    try {
+        const { title, description, location, "travel-style": travelStyle } = req.body;
+
+        const imagePaths = req.files ?
+            req.files.map(file => `/uploads/${file.filename}`) :
+            [];
+
+        const newPost = new Post({
+            title,
+            body: description,
+            author: req.session.userId,
+            hashtags: [location, travelStyle].filter(Boolean),
+            images: imagePaths,
+            commentCount: 0
+        });
+
+        await newPost.save();
+        res.redirect("/");
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Server Error");
+    }
+};
+
+// Get the user profile
 exports.getUserProfile = async (req, res) => {
     try {
         const profile = await User.findOne({ username: req.params.username });
@@ -106,59 +140,83 @@ exports.getUserProfile = async (req, res) => {
     }
 };
 
-exports.showCreatePost = async (req, res) => {
-    res.render("create-post");
+// Show the edit form
+exports.showEditPost = async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id).lean();
+
+        if (!post) {
+            return res.status(404).render("error", { message: "Post not found" });
+        }
+
+        // Ownership check
+        if (post.author.toString() !== req.session.userId) {
+            return res.status(403).render("error", { message: "Unauthorized" });
+        }
+
+        res.render("edit-post", { post });
+    } catch (err) {
+        console.error(err);
+        res.status(500).render("error", { message: "Server error" });
+    }
 };
 
-exports.createPost = async (req, res) => {
+// Handle post edit
+exports.editPost = async (req, res) => {
     try {
+        const post = await Post.findById(req.params.id);
+
+        if (!post) {
+            return res.status(404).render("error", { message: "Post not found" });
+        }
+
+        // Post ownership check
+        if (post.author.toString() !== req.session.userId) {
+            return res.status(403).render("error", { message: "Unauthorized" });
+        }
+
         const { title, description, location, "travel-style": travelStyle } = req.body;
 
-        const trimmedTitle = title ? title.trim() : "";
-        const trimmedDescription = description ? description.trim() : "";
-        const trimmedLocation = location ? location.trim() : "";
-        const trimmedTravelStyle = travelStyle ? travelStyle.trim() : "";
+        // Update post fields
+        post.title = title || post.title;
+        post.body = description || post.body;
+        post.hashtags = [location, travelStyle].filter(Boolean);
 
-        // checks if user is logged in 
-        if (!req.session.userId) {
-            return res.redirect("/login");
+        // Handle new images if uploaded
+        if (req.files && req.files.length > 0) {
+            post.images = req.files.map(file => `/uploads/${file.filename}`);
         }
 
-        // backend validation
-        if (!trimmedTitle || !trimmedDescription || !trimmedLocation || !trimmedTravelStyle) 
-        {
-            return res.status(400).render("create-post", 
-                {
-                error: "All fields are required.",
-                user: res.locals.user
-                }
-            );
+        await post.save();
+        res.redirect(`/post/${post._id}`);
+    } catch (err) {
+        console.error(err);
+        res.status(500).render("error", { message: "Server error" });
+    }
+};
+
+// Delete post
+exports.deletePost = async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+
+        if (!post) {
+            return res.status(404).render("error", { message: "Post not found" });
         }
 
-        const imagePaths = req.files ?
-            req.files.map(file => `/uploads/${file.filename}`) :
-            [];
-
-        if (imagePaths.length === 0) {
-            return res.status(400).render("create-post", {
-                error: "Please upload at least one photo.",
-                user: res.locals.user
-            });
+        // Post ownership check
+        if (post.author.toString() !== req.session.userId) {
+            return res.status(403).render("error", { message: "Unauthorized" });
         }
 
-        const newPost = new Post({
-            title: trimmedTitle,
-            body: trimmedDescription,
-            author: req.session.userId,
-            hashtags: [trimmedLocation, trimmedTravelStyle].filter(Boolean),
-            images: imagePaths,
-            commentCount: 0
-        });
+        await Post.deleteOne({ _id: post._id });
 
-        await newPost.save();
+        // delete comments related to this post
+        await Comment.deleteMany({ post: post._id });
+
         res.redirect("/");
     } catch (err) {
         console.error(err);
-        res.status(500).send("Server Error");
+        res.status(500).render("error", { message: "Server error" });
     }
 };
