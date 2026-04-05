@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Post - GunitaPH</title>
+    <link rel="icon" href="/images/gunita-logo.png" type="image/png">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/forms.css">
+    <script src="/js/main.js" defer></script>
+</head>
+
+<body>
+<div class="container">
+
+    <!-- Left Sidebar -->
+    <!-- LOGGED IN VIEW -->
+    {{#if user}}
+    <div class="left-sidebar">
+        <div class="logo">
+            <h1 class="name"><span>G</span>UNITA</h1>
+        </div>
+
+        <img src="{{user.profilePic}}" class="profile-pic" alt="Profile Pic">
+        <h2><a href="/user/{{user.username}}" class="profile-link">{{user.username}}</a></h2>
+        <p>@{{user.handle}}</p>
+
+        <button>
+            <a href="/" class="sidebar-btn">
+                <img src="/images/home-button.png" class="home-button"> Home
+            </a>
+        </button>
+
+        <button>
+            <a href="/create-post" class="sidebar-btn">
+                <img src="/images/new-post-button.png" class="new-post-button"> New Post
+            </a>
+        </button>
+    </div>
+    <!-- LOGGED OUT VIEW -->
+    {{else}}
+    <div class="left-sidebar" id="loggedOutContainer">
+        <div class="logo">
+            <h1 class="name"><span>G</span>UNITA</h1>
+        </div>
+
+        <img src="/images/guest-profile.png" class="profile-pic">
+        <h2 style="color: #7f7f7f">guest</h2>
+
+        <button><a href="/register">Sign up</a></button>
+        <button><a href="/login">Log in</a></button>
+    </div>
+    {{/if}}
+
+    <!-- Feed -->
+    <div class="feed">
+        <div class="page-header">
+            <h1>Edit Your Memory</h1>
+            <p>Update your adventure!</p>
+        </div>
+
+        <div class="create-post">
+
+            <form action="/post/{{post._id}}/edit" method="POST" enctype="multipart/form-data" onsubmit="return confirm('Save changes to this post?');">
+
+                <!-- Title -->
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" name="title" value="{{post.title}}" required>
+                </div>
+
+                <!-- Location -->
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" name="location" value="{{post.hashtags.[0]}}">
+                </div>
+
+                <!-- Travel Style -->
+                <div class="form-group">
+                    <label>Travel Style</label>
+                    <select name="travel-style" required>
+                        <option value="">Select a travel style</option>
+                        <option value="Budget">Budget</option>
+                        <option value="Family">Family</option>
+                        <option value="Backpacking">Backpacking</option>
+                        <option value="Luxury">Luxury</option>
+                        <option value="Solo">Solo</option>
+                    </select>
+                </div>
+
+                <!-- Existing Images -->
+                {{#if post.images}}
+                <div class="form-group">
+                    <label>Current Images</label>
+                    <div class="post-images">
+                        {{#each post.images}}
+                            <img src="{{this}}" style="max-width:150px; border-radius:8px;">
+                        {{/each}}
+                    </div>
+                </div>
+                {{/if}}
+
+                <!-- Upload New Images -->
+                <div class="form-group">
+                    <label>Upload New Images</label>
+                    <input type="file" name="photo" accept="image/*" multiple>
+                </div>
+
+                <!-- Description -->
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description" rows="5" required>{{post.body}}</textarea>
+                </div>
+
+                <div class="form-buttons">
+                    <a href="/post/{{post._id}}">
+                        <button type="button" class="cancel-btn">Cancel</button>
+                    </a>
+                    <button type="submit" class="post-btn">Save Changes</button>
+                </div>
+            </form>
+
+                <form action="/post/{{post._id}}/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');">
+                      <button type="submit" class="cancel-btn" style="background:red; color:white;">
+                    Delete Post
+                </button>
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div class="right-sidebar">
+
+        <div class="searchbar">
+            <form>
+                <img src="/images/search-icon.png" class="search-icon">
+                <input type="text" placeholder="Search...">
+            </form>
+        </div>
+
+        <div class="trending">
+            <h3>Top 3 Trending</h3>
+            <ul>
+                <li>#EntitledForeigners</li>
+                <li>#ValentinesDay</li>
+                <li>#HappySinglesDay</li>
+            </ul>
+        </div>
+
+        <div class="filters">
+            <h3>Destination</h3>
+            <div class="filter-list">
+                <label><input type="checkbox" checked> Luzon</label>
+                <label><input type="checkbox"> Visayas</label>
+                <label><input type="checkbox"> Mindanao</label>
+            </div>
+
+            <h3 class="section-gap">Travel Style</h3>
+            <div class="filter-list">
+                <label><input type="checkbox" checked> Budget</label>
+                <label><input type="checkbox"> Family</label>
+                <label><input type="checkbox"> Backpacking</label>
+                <label><input type="checkbox"> Luxury</label>
+                <label><input type="checkbox"> Solo</label>
+                <button>Set Filters</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>

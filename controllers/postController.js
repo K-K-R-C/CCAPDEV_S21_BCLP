@@ -50,7 +50,12 @@ exports.getPost = async (req, res) => {
             .populate("author")
             .lean();
 
-        res.render("post", { post, comments });
+        res.render("post", {
+            post,
+            comments,
+            user: res.locals.user,
+            isOwner: res.locals.user?._id?.toString() === post.author._id.toString()
+        });
     } catch (err) {
         console.error(err);
         res.status(404).render("error", { message: "Post not found" });
