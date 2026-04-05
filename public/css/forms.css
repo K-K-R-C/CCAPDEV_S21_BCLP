@@ -235,3 +235,9 @@ button:hover
   background-color: var(--hover-container);
   transform: scale(1.05);
 }
+
+.error {
+    color: #9d4132;
+    margin-bottom: 15px;
+    font-weight: bold;
+}

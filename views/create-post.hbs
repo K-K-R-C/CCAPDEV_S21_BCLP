@@ -65,104 +65,108 @@
         {{/if}}
 
         <!-- Feed (for creating posts) -->
-          <div class="feed">
-              <!-- with blurry background -->
-              <div class="page-header">
-                  <h1>Share Your Memory</h1>
-                  <p>Tell us about your adventure!</p>
-              </div>
+            <div class="feed">
+                <!-- with blurry background -->
+                <div class="page-header">
+                    <h1>Share Your Memory</h1>
+                    <p>Tell us about your adventure!</p>
+                </div>
 
-              <!-- Centered post form -->
-              <div class="create-post">
-                  <form action = "/posts" method = "POST" enctype = "multipart/form-data">
-                      <div class = "form-group">
-                          <label for = "title">Title</label>
-                          <input type = "text" id = "title" name = "title" placeholder = "Give your memory a title!" required>
-                      </div>
+                <!-- Centered post form -->
+                <div class="create-post">
 
-                      <div class = "form-group">
-                          <label for = "location">Location </label>
-                          <input type = "text" id = "location" name = "location" placeholder = "Where was this?" required>
-                      </div>
+                    {{#if error}}
+                        <p class="error">{{error}}</p>
+                    {{/if}}    
+                    <form action = "/posts" method = "POST" enctype = "multipart/form-data">
+                        <div class = "form-group">
+                            <label for = "title">Title</label>
+                            <input type = "text" id = "title" name = "title" placeholder = "Give your memory a title!" required>
+                        </div>
 
-                      <div class = "form-group">
-                          <label for = "travel-style">Travel Style</label>
-                          <select id = "travel-style" name = "travel-style" required>
-                              <option value = "">Select a travel style</option>
-                              <option value = "Budget">Budget</option>
-                              <option value = "Family">Family</option>
-                              <option value = "Backpacking">Backpacking</option>
-                              <option value = "Luxury">Luxury</option>
-                              <option value = "Solo">Solo</option>
-                          </select>
-                      </div>
+                        <div class = "form-group">
+                            <label for = "location">Location </label>
+                            <input type = "text" id = "location" name = "location" placeholder = "Where was this?" required>
+                        </div>
 
-                      <div class = "form-group">
-                          <label for = "photo">Upload Photo</label>
+                        <div class = "form-group">
+                            <label for = "travel-style">Travel Style</label>
+                            <select id = "travel-style" name = "travel-style" required>
+                                <option value = "">Select a travel style</option>
+                                <option value = "Budget">Budget</option>
+                                <option value = "Family">Family</option>
+                                <option value = "Backpacking">Backpacking</option>
+                                <option value = "Luxury">Luxury</option>
+                                <option value = "Solo">Solo</option>
+                            </select>
+                        </div>
 
-                          <div class = "upload-box" id = "uploadBox">
-                              <input type = "file" id = "photo" name = "photo" accept = "image/*" multiple required>
-                              <p id = "uploadText">Drag photo here or click to upload</p>
-                              <img id="preview" style="display: none; max-width: 100%; max-height: 200px; margin-top: 10px; border-radius: 8px;">
-                          </div>
-                      </div>
+                        <div class = "form-group">
+                            <label for = "photo">Upload Photo</label>
 
-                      <div class = "form-group">
-                          <label for = "description">Description</label>
-                          <textarea id = "description" name = "description" placeholder = "Share your story..." rows = "5" required></textarea>
-                      </div>
+                            <div class = "upload-box" id = "uploadBox">
+                                <input type = "file" id = "photo" name = "photo" accept = "image/*" multiple required>
+                                <p id = "uploadText">Drag photo here or click to upload</p>
+                                <img id="preview" style="display: none; max-width: 100%; max-height: 200px; margin-top: 10px; border-radius: 8px;">
+                            </div>
+                        </div>
 
-                      <div class = "form-buttons">
-                          <a href="/">
-                                <button type = "button" class = "cancel-btn">Cancel</button>
-                          </a>
-                          <button type = "submit" class = "post-btn">Post Memory</button>
-                      </div>
-                  </form>
-              </div>
-          </div>
+                        <div class = "form-group">
+                            <label for = "description">Description</label>
+                            <textarea id = "description" name = "description" placeholder = "Share your story..." rows = "5" required></textarea>
+                        </div>
 
-          <!-- Right Sidebar (same as for Homepage) -->
-          <div class = "right-sidebar">
-              <!-- Search Bar -->
-              <div class = "searchbar">
-                  <form>
-                      <img src = "/images/search-icon.png" alt = "Search" class = "search-icon">
-                      <input type = "text" placeholder = "Search...">
-                  </form>
-              </div>
+                        <div class = "form-buttons">
+                            <a href="/">
+                                    <button type = "button" class = "cancel-btn">Cancel</button>
+                            </a>
+                            <button type = "submit" class = "post-btn">Post Memory</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
-              <!-- Trending Section -->
-              <div class = "trending">
-                  <h3>Top 3 Trending</h3>
+            <!-- Right Sidebar (same as for Homepage) -->
+            <div class = "right-sidebar">
+                <!-- Search Bar -->
+                <div class = "searchbar">
+                    <form>
+                        <img src = "/images/search-icon.png" alt = "Search" class = "search-icon">
+                        <input type = "text" placeholder = "Search...">
+                    </form>
+                </div>
 
-                  <ul>
-                      <li>#EntitledForeigners</li>
-                      <li>#ValentinesDay</li>
-                      <li>#HappySinglesDay</li>
-                  </ul>
-              </div>
+                <!-- Trending Section -->
+                <div class = "trending">
+                    <h3>Top 3 Trending</h3>
 
-              <!-- Filters Section -->
-              <div class = "filters">
-                  <h3>Destination</h3>
-                  <div class = "filter-list">
-                      <label><input type = "checkbox" checked> Luzon</label>
-                      <label><input type = "checkbox"> Visayas</label>
-                      <label><input type = "checkbox"> Mindanao</label>
-                  </div>
+                    <ul>
+                        <li>#EntitledForeigners</li>
+                        <li>#ValentinesDay</li>
+                        <li>#HappySinglesDay</li>
+                    </ul>
+                </div>
 
-                  <h3 class = "section-gap">Travel Style</h3>
-                  <div class = "filter-list">
-                      <label><input type = "checkbox" checked> Budget</label>
-                      <label><input type = "checkbox"> Family</label>
-                      <label><input type = "checkbox"> Backpacking</label>
-                      <label><input type = "checkbox"> Luxury</label>
-                      <label><input type = "checkbox"> Solo</label>
+                <!-- Filters Section -->
+                <div class = "filters">
+                    <h3>Destination</h3>
+                    <div class = "filter-list">
+                        <label><input type = "checkbox" checked> Luzon</label>
+                        <label><input type = "checkbox"> Visayas</label>
+                        <label><input type = "checkbox"> Mindanao</label>
+                    </div>
 
-                      <button>Set Filters</button>
-                  </div>
-              </div>
+                    <h3 class = "section-gap">Travel Style</h3>
+                    <div class = "filter-list">
+                        <label><input type = "checkbox" checked> Budget</label>
+                        <label><input type = "checkbox"> Family</label>
+                        <label><input type = "checkbox"> Backpacking</label>
+                        <label><input type = "checkbox"> Luxury</label>
+                        <label><input type = "checkbox"> Solo</label>
+
+                        <button>Set Filters</button>
+                    </div>
+                </div>
 
           </div>
       </div>

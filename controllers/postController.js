@@ -114,15 +114,43 @@ exports.createPost = async (req, res) => {
     try {
         const { title, description, location, "travel-style": travelStyle } = req.body;
 
+        const trimmedTitle = title ? title.trim() : "";
+        const trimmedDescription = description ? description.trim() : "";
+        const trimmedLocation = location ? location.trim() : "";
+        const trimmedTravelStyle = travelStyle ? travelStyle.trim() : "";
+
+        // checks if user is logged in 
+        if (!req.session.userId) {
+            return res.redirect("/login");
+        }
+
+        // backend validation
+        if (!trimmedTitle || !trimmedDescription || !trimmedLocation || !trimmedTravelStyle) 
+        {
+            return res.status(400).render("create-post", 
+                {
+                error: "All fields are required.",
+                user: res.locals.user
+                }
+            );
+        }
+
         const imagePaths = req.files ?
             req.files.map(file => `/uploads/${file.filename}`) :
             [];
 
+        if (imagePaths.length === 0) {
+            return res.status(400).render("create-post", {
+                error: "Please upload at least one photo.",
+                user: res.locals.user
+            });
+        }
+
         const newPost = new Post({
-            title,
-            body: description,
+            title: trimmedTitle,
+            body: trimmedDescription,
             author: req.session.userId,
-            hashtags: [location, travelStyle].filter(Boolean),
+            hashtags: [trimmedLocation, trimmedTravelStyle].filter(Boolean),
             images: imagePaths,
             commentCount: 0
         });
