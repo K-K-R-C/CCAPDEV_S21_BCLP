@@ -1,5 +1,52 @@
 const User = require("../model/User");
 const bcrypt = require("bcrypt");
+const fs = require("fs");
+
+exports.showEditProfile = async (req, res) => {
+    try {
+        const user = await User.findById(req.session.userId).lean();
+        if (!user) return res.redirect("/");
+
+        res.render("edit-profile", { user });
+    } catch (err) {
+        console.error(err);
+        res.redirect("/");
+    }
+};
+
+exports.editProfile = async (req, res) => {
+    try {
+        const { username, bio, location } = req.body;
+
+        const currentUser = await User.findById(req.session.userId).lean();
+        if (!currentUser) return res.redirect("/login");
+
+        let profilePic = currentUser.profilePic || "/images/profile.jpg";
+        let coverPic = currentUser.coverPic || "/images/cover.jpg";
+
+        if (req.files) {
+            if (req.files.profilePic) {
+                profilePic = `/uploads/${req.files.profilePic[0].filename}`;
+            }
+            if (req.files.coverPic) {
+                coverPic = `/uploads/${req.files.coverPic[0].filename}`;
+            }
+        }
+
+        const updatedUser = await User.findByIdAndUpdate(
+            req.session.userId,
+            { username, bio, location, profilePic, coverPic },
+            { returnDocument: 'after', runValidators: true }
+        ).lean();
+
+        req.session.user = updatedUser;
+
+        res.redirect(`/user/${username}`);
+    } catch (err) {
+        console.error(err);
+        res.redirect("/edit-profile");
+    }
+};
 
 exports.getAllUsers = async (req, res) => {
     try {

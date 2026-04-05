@@ -24,6 +24,12 @@ router.get("/create-post", isAuthenticated, postController.showCreatePost);
 router.post("/posts", isAuthenticated, upload.array("photo", 5), postController.createPost);
 
 // User Profile
+router.get("/edit-profile", isAuthenticated, userController.showEditProfile);
+router.post("/edit-profile", isAuthenticated, upload.fields([
+  { name: 'profilePic', maxCount: 1 },
+  { name: 'coverPic', maxCount: 1 }
+]), userController.editProfile);
+
 router.get("/user/:username", postController.getUserProfile);
 
 // Edit and Delete Posts

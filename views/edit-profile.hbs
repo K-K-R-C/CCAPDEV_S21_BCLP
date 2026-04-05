@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit Profile - Gunita</title>
+    <link rel="icon" href="/images/gunita-logo.png" type="image/png">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/posts.css">
+    <script src="/js/main.js" defer></script>
+  </head>
+
+  <body>
+    <div class="container">
+
+      <!-- LEFT SIDEBAR -->
+      <!-- LOGGED IN VIEW -->
+      {{#if user}}
+      <div class="left-sidebar" id="loggedInContainer">
+          <div class="logo">
+              <h1 class="name"><span>G</span>UNITA</h1>
+          </div>
+
+          <img src="{{user.profilePic}}" class="profile-pic" alt="Profile Pic">
+          <h2><a href="/user/{{user.username}}" class="profile-link">{{user.username}}</a></h2>
+          <p>@{{user.handle}}</p>
+
+          <button>
+              <a href="/" class="sidebar-btn">
+                  <img src="/images/home-button.png" class="home-button" alt="Home">
+                  Home
+              </a>
+          </button>
+
+          <button>
+              <a href="/create-post" class="sidebar-btn">
+                  <img src="/images/new-post-button.png" class="new-post-button" alt="New Post">
+                  New Post
+              </a>
+          </button> 
+      </div>
+      <!-- LOGGED OUT VIEW -->
+      {{else}}
+      <div class="left-sidebar" id="loggedOutContainer">
+          <div class="logo">
+              <h1 class="name"><span>G</span>UNITA</h1>
+          </div>
+
+          <img src="/images/guest-profile.png" class="profile-pic" alt="Profile Pic">
+          <h2 style="color: #7f7f7f">guest</h2>
+          <button><a href="/register">Sign up</a></button>
+          <button><a href="/login">Log in</a></button>
+      </div>
+      {{/if}}
+
+      <section class="center-col">
+
+        <div class="card edit-profile">
+          <h2>Edit Profile</h2>
+
+            <form action="/edit-profile" method="POST" enctype="multipart/form-data" onsubmit="return confirm('Save changes to your profile?');">
+                <!-- Cover Photo Upload -->
+                <div class="edit-cover">
+                    <div class="cover" style="background-image: url('{{user.coverPic}}');"></div>
+                    <input type="file" name="coverPic" id="coverPicInput" style="display: none;" accept="image/*">
+                    <button type="button" class="dark-btn" onclick="document.getElementById('coverPicInput').click()">
+                        Change Cover Photo
+                    </button>
+                </div>
+
+                <!-- Profile Picture -->
+                <div class="edit-avatar">
+                    <img src="{{user.profilePic}}" alt="Profile Picture" class="avatar xl">
+                    <input type="file" name="profilePic" id="profilePicInput" style="display: none;" accept="image/*">
+                    <button type="button" class="dark-btn" onclick="document.getElementById('profilePicInput').click()">
+                        Change Photo
+                    </button>
+                </div>
+
+                <!-- Other fields -->
+                <label for="username">Name</label>
+                <input type="text" id="username" name="username" value="{{user.username}}" required>
+
+                <label for="handle">Username</label>
+                <input type="text" id="handle" name="handle" value="{{user.handle}}" required>
+
+                <label for="bio">Bio</label>
+                <textarea id="bio" name="bio" rows="3">{{user.bio}}</textarea>
+
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location" value="{{user.location}}">
+
+                <div class="form-actions">
+                    <button type="submit" class="dark-btn">Save Changes</button>
+                    <a href="/user/{{user.username}}"><button type="button" class="light-btn">Cancel</button></a>
+                </div>
+            </form>
+        </div>
+
+      </section>
+
+      <!-- RIGHT SIDEBAR -->
+      <div class="right-sidebar">
+          <div class="searchbar">
+              <form>
+                  <img src="/images/search-icon.png" alt="Search" class="search-icon">
+                  <input type="text" placeholder="Search...">
+              </form>
+          </div>
+
+          <div class="trending">
+              <h3>Top 3 Trending</h3>
+              <ul>
+                  <li>#EntitledForeigners</li>
+                  <li>#ValentinesDay</li>
+                  <li>#HappySinglesDay</li>
+              </ul>
+          </div>
+
+          <div class="card filters">
+              <h3>Destination</h3>
+              <div class="filter-list">
+                <label><input type="checkbox" checked> Luzon</label>
+                <label><input type="checkbox"> Visayas</label>
+                <label><input type="checkbox"> Mindanao</label>
+              </div>
+
+              <h3 class="section-gap">Travel Style</h3>
+              <div class="filter-list">
+                <label><input type="checkbox" checked> Budget</label>
+                <label><input type="checkbox"> Family</label>
+                <label><input type="checkbox"> Backpacking</label>
+                <label><input type="checkbox"> Luxury</label>
+                <label><input type="checkbox"> Solo</label>
+              </div>
+
+              <button>Set Filters</button>
+          </div>
+      </div>
+
+    </div>
+  </body>
+</html>
