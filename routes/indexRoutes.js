@@ -8,6 +8,15 @@ const postController = require("../controllers/postController");
 const userController = require("../controllers/userController");
 const commentController = require("../controllers/commentController");
 
+function isAuthenticated(req, res, next) 
+{
+    if (!req.session.userId) 
+    {
+        return res.redirect("/login");
+    }
+    next();
+}
+
 // Create and Get Posts
 router.get("/", postController.getAllPosts);
 router.get("/post/:id", postController.getPost);
