@@ -20,19 +20,19 @@ function isAuthenticated(req, res, next)
 // Create and Get Posts
 router.get("/", postController.getAllPosts);
 router.get("/post/:id", postController.getPost);
-router.get("/create-post", postController.showCreatePost);
-router.post("/posts", upload.array("photo", 5), postController.createPost);
+router.get("/create-post", isAuthenticated, postController.showCreatePost);
+router.post("/posts", isAuthenticated, upload.array("photo", 5), postController.createPost);
 
 // User Profile
 router.get("/user/:username", postController.getUserProfile);
 
 // Edit and Delete Posts
-router.get("/post/:id/edit", postController.showEditPost);
-router.post("/post/:id/edit", upload.array("photo", 5), postController.editPost);
-router.post("/post/:id/delete", postController.deletePost);
+router.get("/post/:id/edit", isAuthenticated, postController.showEditPost);
+router.post("/post/:id/edit", isAuthenticated, upload.array("photo", 5), postController.editPost);
+router.post("/post/:id/delete", isAuthenticated, postController.deletePost);
 
 // Comments
-router.post("/post/:id/comment", commentController.createComment);
+router.post("/post/:id/comment", isAuthenticated, commentController.createComment);
 
 // Register and Login
 router.get("/register", userController.showRegister);
