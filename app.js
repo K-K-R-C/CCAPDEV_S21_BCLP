@@ -24,7 +24,9 @@ app.engine("hbs", hbs.engine({
                 day: "2-digit",
                 year: "2-digit"
             });
-        }
+        },
+
+        eq: (a, b) => a === b //For radio button checked state
     },
     runtimeOptions:
     {

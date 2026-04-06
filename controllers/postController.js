@@ -2,10 +2,47 @@ const Post = require("../model/Post");
 const User = require("../model/User");
 const Comment = require("../model/Comment");
 
-// Get all posts
+// Helper function for destinations
+const getDestination = (location) => {
+    const lowerLoc = location?.toLowerCase();
+    if (lowerLoc?.includes('luzon') || lowerLoc?.includes('manila') || lowerLoc?.includes('batanes')) return 'Luzon';
+    if (lowerLoc?.includes('visayas') || lowerLoc?.includes('cebu') || lowerLoc?.includes('boracay')) return 'Visayas';
+    if (lowerLoc?.includes('mindanao') || lowerLoc?.includes('davao')) return 'Mindanao';
+    return null;
+};
+
+// Get all posts (NOW with search + Filter with Query Params)
 exports.getAllPosts = async (req, res) => {
     try {
-        const posts = await Post.find()
+        const { search, destination, travelStyle } = req.query;
+
+        let query = {};
+
+        // Search in title, body or hashtags
+        if (search)
+        {
+            query.$or =
+            [
+                { title: { $regex: search, $options: 'i' } },
+                { body: { $regex: search, $options: 'i' } },
+                { hashtags: { $regex: search, $options: 'i'} }
+            ];
+        }
+
+        // Destination filter
+        if (destination && destination !== 'all')
+        {
+            query.destination = destination;
+        }
+
+        // Travel style filter
+        if (travelStyle && travelStyle !== 'all')
+        {
+            query.travelStyle = travelStyle;
+        }
+
+
+        const posts = await Post.find(query)
             .populate("author")
             .sort({ createdAt: -1 })
             .limit(20)
@@ -18,7 +55,16 @@ exports.getAllPosts = async (req, res) => {
                 year: "2-digit"
             });
         });
-        res.render("index", { posts });
+        res.render("index",
+        {
+            posts,
+            filters:
+            {
+                search: search || '',
+                destination: destination || 'all',
+                travelStyle: travelStyle || 'all'
+            }
+        });
     } catch (err) {
         console.error(err);
         res.status(500).send("Server Error");
@@ -64,17 +110,43 @@ exports.getPost = async (req, res) => {
 
 // Show create post
 exports.showCreatePost = async (req, res) => {
-    res.render("create-post");
+    res.render("create-post", { user: res.locals.user });
 };
 
 // Create a post
 exports.createPost = async (req, res) => {
     try {
-        const { title, description, location, "travel-style": travelStyle } = req.body;
+        let { title, description, location, "travel-style": travelStyle } = req.body;
 
-        const imagePaths = req.files ?
-            req.files.map(file => `/uploads/${file.filename}`) :
-            [];
+        // VALIDATION IN BACKEND (for title/description length, and travel style option(s))
+        title = title?.trim();
+        description = description?.trim();
+
+        if (!title || title.length < 3)
+        {
+            return res.render('create-post',
+            {
+                error: 'Title must be 3+ characters',
+                user: res.locals.user
+            });
+        }
+
+        if (!description || description.length < 10) {
+            return res.render('create-post',
+            {
+                error: 'Description must be 10+ characters',
+                user: res.locals.user
+            });
+        }
+
+        if (!travelStyle) {
+            return res.render('create-post', {
+                error: 'Please select travel style',
+                user: res.locals.user
+            });
+        }
+
+        const imagePaths = req.files?.map(file => `/uploads/${file.filename}`) || [];
 
         const newPost = new Post({
             title,
@@ -82,14 +154,16 @@ exports.createPost = async (req, res) => {
             author: req.session.userId,
             hashtags: [location, travelStyle].filter(Boolean),
             images: imagePaths,
-            commentCount: 0
+            commentCount: 0,
+            destination: getDestination(location),
+            travelStyle: travelStyle
         });
 
         await newPost.save();
         res.redirect("/");
     } catch (err) {
         console.error(err);
-        res.status(500).send("Server Error");
+        res.status(500).render("error", { message: "Server error" });
     }
 };
 
@@ -137,7 +211,8 @@ exports.getUserProfile = async (req, res) => {
             posts,
             comments,
             user: res.locals.user,
-            isOwner: res.locals.user?._id?.toString() === profile._id.toString()
+            isOwner: res.locals.user?._id?.toString() === profile._id.toString(),
+            filters: req.query
         });
     } catch (err) {
         console.error(err);
@@ -159,7 +234,7 @@ exports.showEditPost = async (req, res) => {
             return res.status(403).render("error", { message: "Unauthorized" });
         }
 
-        res.render("edit-post", { post });
+        res.render("edit-post", { post, user: res.locals.user });
     } catch (err) {
         console.error(err);
         res.status(500).render("error", { message: "Server error" });
@@ -180,12 +255,18 @@ exports.editPost = async (req, res) => {
             return res.status(403).render("error", { message: "Unauthorized" });
         }
 
-        const { title, description, location, "travel-style": travelStyle } = req.body;
+        let { title, description, location, "travel-style": travelStyle } = req.body;
+
+        // Trim inputs
+        title = title?.trim() || post.title;
+        description = description?.trim() || post.body;
 
         // Update post fields
-        post.title = title || post.title;
-        post.body = description || post.body;
+        post.title = title;
+        post.body = description;
         post.hashtags = [location, travelStyle].filter(Boolean);
+        post.destination = getDestination(location);
+        post.travelStyle = travelStyle || post.travelStyle;
 
         // Handle new images if uploaded
         if (req.files && req.files.length > 0) {

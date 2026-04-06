@@ -99,7 +99,9 @@ const seedData = async () =>
                 hashtags: ['Beachin\'', 'Hot', 'Tan'], 
                 commentCount: 15,
                 upvotes: [],
-                downvotes: []
+                downvotes: [],
+                destination: 'Visayas',
+                travelStyle: 'Solo'
             }, 
 
             {
@@ -110,7 +112,9 @@ const seedData = async () =>
                 hashtags: ['Dumaguete', 'HiddenGem', 'TravelPhilippines'], 
                 commentCount: 3,
                 upvotes: [],
-                downvotes: []
+                downvotes: [],
+                destination: 'Visayas',
+                travelStyle: 'Backpacking'
             }, 
 
             {
@@ -121,7 +125,9 @@ const seedData = async () =>
                 hashtags: ['Bohol', 'TravelPhilippines', 'FamilyTrip'], 
                 commentCount: 5,
                 upvotes: [],
-                downvotes: []
+                downvotes: [],
+                destination: 'Visayas',
+                travelStyle: 'Family'
             }, 
 
             {
@@ -132,7 +138,9 @@ const seedData = async () =>
                 hashtags: ['MtPulag', 'Hiking', 'NatureLovers'], 
                 commentCount: 0,
                 upvotes: [],
-                downvotes: []
+                downvotes: [],
+                destination: 'Luzon',
+                travelStyle: 'Backpacking'
             }, 
 
             {
@@ -143,7 +151,9 @@ const seedData = async () =>
                 hashtags: ['Tagaytay', 'MorningViews', 'CoffeeLovers'], 
                 commentCount: 0,
                 upvotes: [],
-                downvotes: []
+                downvotes: [],
+                destination: 'Luzon',
+                travelStyle: 'Luxury'
             }
         ]);
 

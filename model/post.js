@@ -32,6 +32,21 @@ const PostSchema = new mongoose.Schema
         type: String
     }],
 
+    //FOR FILTERING
+    destination:
+    {
+        type: String,
+        enum: ['Luzon', 'Visayas', 'Mindanao'],
+        sparse: true
+    },
+
+    travelStyle:
+    {
+        type: String,
+        enum: ['Budget', 'Family', 'Backpacking', 'Luxury', 'Solo'],
+        sparse: true
+    },
+
     upvotes:
     [{
         type: mongoose.Schema.Types.ObjectId,
@@ -61,6 +76,9 @@ const PostSchema = new mongoose.Schema
         type: Date,
         default: Date.now
     }
+},
+{
+    timestamps: true
 });
 
 module.exports = mongoose.model('Post', PostSchema)

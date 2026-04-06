@@ -88,3 +88,25 @@ document.addEventListener("DOMContentLoaded", function(e) {
         });
     }
 });
+
+// Search on enter
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.querySelector('.searchbar input[name="search"]');
+    if (searchInput) {
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                document.getElementById('searchForm').submit();
+            }
+        });
+    }
+});
+
+// Clear all user input/choices
+function clearAll() {
+    const url = new URL(window.location);
+    url.searchParams.delete('search');
+    url.searchParams.set('destination', 'all');
+    url.searchParams.set('travelStyle', 'all');
+    window.location = url;
+}
