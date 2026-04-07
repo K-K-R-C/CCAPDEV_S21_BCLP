@@ -41,12 +41,18 @@ exports.getAllPosts = async (req, res) => {
             query.travelStyle = travelStyle;
         }
 
-
         const posts = await Post.find(query)
             .populate("author")
             .sort({ createdAt: -1 })
             .limit(20)
             .lean();
+
+        // Get hashtags from posts
+        const trendingHashtags = [
+            ...new Set(posts.flatMap(post => post.hashtags || []))
+        ]
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 3);
 
         posts.forEach(post => {
             post.date = new Date(post.createdAt).toLocaleDateString("en-PH", {
@@ -64,6 +70,7 @@ exports.getAllPosts = async (req, res) => {
         res.render("index",
         {
             posts,
+            trendingHashtags,
             filters:
             {
                 search: search || '',

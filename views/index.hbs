@@ -155,11 +155,15 @@
 
             <!-- Trending Section -->
             <div class="trending">
-                <h3>Top 3 Trending</h3>
+                <h3>Hashtags</h3>
                 <ul>
-                    <li>#EntitledForeigners</li>
-                    <li>#ValentinesDay</li>
-                    <li>#HappySinglesDay</li>
+                    {{#each trendingHashtags}}
+                        <li>
+                            <a href="/?search={{this}}">
+                                #{{this}}
+                            </a>
+                        </li>
+                    {{/each}}
                 </ul>
             </div>
 
