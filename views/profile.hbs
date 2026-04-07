@@ -195,35 +195,18 @@
             </div>
 
             <div class="trending">
-                <h3>Top 3 Trending</h3>
+                <h3>Hashtags</h3>
                 <ul>
-                    <li>#EntitledForeigners</li>
-                    <li>#ValentinesDay</li>
-                    <li>#HappySinglesDay</li>
+                    {{#each trendingHashtags}}
+                        <li>
+                            <a href="/?search={{this}}">
+                                #{{this}}
+                            </a>
+                        </li>
+                    {{/each}}
                 </ul>
             </div>
-
-            <div class="card filters">
-                <h3>Destination</h3>
-                <div class="filter-list">
-                  <label><input type="checkbox" checked> Luzon</label>
-                  <label><input type="checkbox"> Visayas</label>
-                  <label><input type="checkbox"> Mindanao</label>
-                </div>
-
-                <h3 class="section-gap">Travel Style</h3>
-                <div class="filter-list">
-                  <label><input type="checkbox" checked> Budget</label>
-                  <label><input type="checkbox"> Family</label>
-                  <label><input type="checkbox"> Backpacking</label>
-                  <label><input type="checkbox"> Luxury</label>
-                  <label><input type="checkbox"> Solo</label>
-                </div>
-
-                <button>Set Filters</button>
-            </div>
         </div>
-
     </div>
   </body>
 </html>

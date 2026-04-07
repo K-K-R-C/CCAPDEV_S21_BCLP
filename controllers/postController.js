@@ -283,6 +283,14 @@ exports.getUserProfile = async (req, res) => {
             new Date(comment.updatedAt).getTime() > new Date(comment.createdAt).getTime();
         });
 
+        const allPosts = await Post.find().lean();
+
+        const trendingHashtags = [
+            ...new Set(allPosts.flatMap(post => post.hashtags || []))
+        ]
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 3);
+
 
         res.render("profile",
         {
@@ -291,7 +299,8 @@ exports.getUserProfile = async (req, res) => {
             comments,
             user: res.locals.user,
             isOwner: res.locals.user?._id?.toString() === profile._id.toString(),
-            filters: req.query
+            filters: req.query,
+            trendingHashtags
         });
     } catch (err) {
         console.error(err);
