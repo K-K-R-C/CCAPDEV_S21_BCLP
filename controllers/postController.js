@@ -4,11 +4,40 @@ const Comment = require("../model/comment");
 
 // Helper function for destinations
 const getDestination = (location) => {
-    const lowerLoc = location?.toLowerCase();
-    if (lowerLoc?.includes('luzon') || lowerLoc?.includes('manila') || lowerLoc?.includes('batanes')) return 'Luzon';
-    if (lowerLoc?.includes('visayas') || lowerLoc?.includes('cebu') || lowerLoc?.includes('boracay')) return 'Visayas';
-    if (lowerLoc?.includes('mindanao') || lowerLoc?.includes('davao')) return 'Mindanao';
-    return null;
+    if (!location) return null;
+
+    const lowerLoc = location.toLowerCase().trim();
+
+    // LUZON (North + MIMAROPA + Bicol)
+    const luzonKeywords = [
+        'luzon', 'manila', 'quezon', 'batangas', 'cavite', 'laguna',
+        'rizal', 'bulacan', 'pampanga', 'bataan', 'zambales', 'tarlac',
+        'nueva ecija', 'pangasinan', 'la union', 'ilocos', 'benguet',
+        'baguio', 'batanes', 'cagayan', 'isabela', 'quirino', 'nueva viscaya',
+        'aurora', 'palawan', 'puerto princesa', 'el nido', 'coron', 'busuanga',
+        'romblon', 'marinduque', 'mindoro', 'bicol', 'albay', 'sorsogon',
+        'camarines', 'catanduanes', 'masbate'
+    ];
+
+    // VISAYAS (Central Philippines)
+    const visayasKeywords = [
+        'visayas', 'cebu', 'bohol', 'negros', 'leyte', 'samar', 'iloilo',
+        'bacolod', 'dumaguete', 'boracay', 'guimaras', 'capiz', 'aklan',
+        'antique', 'hiligaynon', 'waray', 'tacloban', 'ormoc'
+    ];
+
+    // MINDANAO (South Philippines)
+    const mindanaoKeywords = [
+        'mindanao', 'davao', 'cagayan de oro', 'cdom', 'zamboanga',
+        'general santos', 'gensan', 'cotabato', 'pagadian', 'siargao',
+        'camiguin', 'bukidnon', 'lanao', 'misamis', 'surigao', 'butuan'
+    ];
+
+    if (luzonKeywords.some(keyword => lowerLoc.includes(keyword))) return 'Luzon';
+    if (visayasKeywords.some(keyword => lowerLoc.includes(keyword))) return 'Visayas';
+    if (mindanaoKeywords.some(keyword => lowerLoc.includes(keyword))) return 'Mindanao';
+
+    return null; // Unknown location
 };
 
 // Get all posts (NOW with search + Filter with Query Params)
