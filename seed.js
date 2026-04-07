@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const User = require('../../model/user');
-const Post = require('../../model/post');
-const Comment = require('../../model/comment');
+const User = require('../model/user');
+const Post = require('../model/post');
+const Comment = require('../model/comment');
 
 // For hashing
 const bcrypt = require('bcrypt');
