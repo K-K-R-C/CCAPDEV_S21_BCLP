@@ -40,6 +40,10 @@ router.get("/post/:id/edit", isAuthenticated, postController.showEditPost);
 router.post("/post/:id/edit", isAuthenticated, upload.array("photo", 5), postController.editPost);
 router.post("/post/:id/delete", isAuthenticated, postController.deletePost);
 
+// Likes and Dislikes
+router.post("/post/:id/like", isAuthenticated, postController.likePost);
+router.post("/post/:id/dislike", isAuthenticated, postController.dislikePost);
+
 // Comments
 router.get('/comment/:id/edit', isAuthenticated, commentController.renderEditComment);
 router.post("/post/:id/comment", isAuthenticated, commentController.createComment);
