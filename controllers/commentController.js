@@ -1,4 +1,5 @@
 const Comment = require("../model/Comment");
+const Post = require("../model/Post");
 
 exports.createComment = async (req, res) =>
 {
@@ -22,6 +23,12 @@ exports.createComment = async (req, res) =>
         });
 
         await comment.save();
+
+        // increases comment count
+        await Post.findByIdAndUpdate(req.params.id, {
+            $inc: { commentCount: 1 }
+        });
+
         res.redirect(`/post/${req.params.id}`);
     }
     catch (err)
@@ -31,3 +38,87 @@ exports.createComment = async (req, res) =>
     }
 
 }
+
+exports.deleteComment = async (req, res) =>
+{
+    try
+    {
+        const comment = await Comment.findById(req.params.commentId);
+
+        if (!comment)
+        {
+            return res.redirect("back");
+        }
+
+        // only owner can delete
+        if (comment.author.toString() !== req.session.userId)
+        {
+            return res.status(403).send("Unauthorized");
+        }
+
+        await Comment.deleteOne({ _id: comment._id });
+
+        // decreases the comment count
+        await Post.findByIdAndUpdate(comment.post, {
+            $inc: { commentCount: -1 }
+        });
+
+        res.redirect(`/post/${comment.post}`);
+    }
+    catch (err)
+    {
+        console.error(err);
+        res.redirect("back");
+    }
+}
+
+exports.editComment = async (req, res) =>
+{
+    try
+    {
+        const { text } = req.body;
+
+        const comment = await Comment.findById(req.params.commentId);
+
+        if (!comment)
+        {
+            return res.redirect("back");
+        }
+
+        // only author can edit
+        if (comment.author.toString() !== req.session.userId)
+        {
+            return res.status(403).send("Unauthorized");
+        }
+
+        comment.text = text.trim();
+        await comment.save();
+
+        res.redirect(`/post/${comment.post}`);
+    }
+    catch (err)
+    {
+        console.error(err);
+        res.redirect("back");
+    }
+}
+
+exports.renderEditComment = async (req, res) => {
+    try {
+        const comment = await Comment.findById(req.params.id);
+
+        if (!comment) {
+            return res.redirect("back");
+        }
+
+        // only author can edit
+        if (comment.author.toString() !== req.session.userId) {
+            return res.status(403).send("Unauthorized");
+        }
+
+        res.render("edit-comment", { comment });
+    } catch (err) {
+        console.error(err);
+        res.redirect("back");
+    }
+};

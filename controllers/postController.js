@@ -96,6 +96,20 @@ exports.getPost = async (req, res) => {
             .populate("author")
             .lean();
 
+        comments.forEach(comment => {
+            comment.isOwner =
+                res.locals.user &&
+                comment.author._id.toString() === res.locals.user._id.toString();
+
+            if (comment.replies) {
+                comment.replies.forEach(reply => {
+                    reply.isOwner =
+                        res.locals.user &&
+                        reply.author._id.toString() === res.locals.user._id.toString();
+                });
+            }
+        });
+
         res.render("post", {
             post,
             comments,
