@@ -380,3 +380,67 @@ exports.deletePost = async (req, res) => {
         res.status(500).render("error", { message: "Server error" });
     }
 };
+
+// Like a post
+exports.likePost = async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        const userId = req.session.userId;
+
+        // Remove user from downvotes
+        post.downvotes = post.downvotes.filter(id => id.toString() !== userId.toString());
+
+        // Toggle like
+        const hasLiked = post.upvotes.some(id => id.toString() === userId.toString());
+        if (hasLiked) {
+            post.upvotes = post.upvotes.filter(id => id.toString() !== userId.toString());
+        } else {
+            post.upvotes.push(userId);
+        }
+
+        await post.save();
+
+        res.json({
+            upvotes: post.upvotes.length,
+            downvotes: post.downvotes.length,
+            userLiked: !hasLiked,
+            userDisliked: false
+        });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server error" });
+    }
+};
+
+// Dislike a post
+exports.dislikePost = async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        const userId = req.session.userId;
+
+        // Remove user from upvotes
+        post.upvotes = post.upvotes.filter(id => id.toString() !== userId.toString());
+
+        // Toggle dislike
+        const hasDisliked = post.downvotes.some(id => id.toString() === userId.toString());
+        if (hasDisliked) {
+            post.downvotes = post.downvotes.filter(id => id.toString() !== userId.toString());
+        } else {
+            post.downvotes.push(userId);
+        }
+
+        await post.save();
+
+        res.json({
+            upvotes: post.upvotes.length,
+            downvotes: post.downvotes.length,
+            userLiked: false,
+            userDisliked: !hasDisliked
+        });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server error" });
+    }
+};
