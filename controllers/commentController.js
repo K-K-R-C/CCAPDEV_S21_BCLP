@@ -42,38 +42,44 @@ exports.createComment = async (req, res) =>
 
 }
 
-exports.deleteComment = async (req, res) =>
-{
-    try
-    {
+exports.deleteComment = async (req, res) => {
+    try {
         const comment = await Comment.findById(req.params.commentId);
 
-        if (!comment)
-        {
-            return res.redirect("back");
+        if (!comment) {
+            res.redirect(`/post/${postId}`);
         }
 
         // only owner can delete
-        if (comment.author.toString() !== req.session.userId)
-        {
+        if (comment.author.toString() !== req.session.userId) {
             return res.status(403).send("Unauthorized");
         }
 
-        await Comment.deleteOne({ _id: comment._id });
+        // find ALL comments to delete 
+        const commentsToDelete = await Comment.find({
+            $or: [
+                { _id: comment._id },
+                { parentComment: comment._id }
+            ]
+        });
 
-        // decreases the comment count
+        const deleteCount = commentsToDelete.length;
+
+        // delete them
+        await Comment.deleteMany({
+            _id: { $in: commentsToDelete.map(c => c._id) }
+        });
+
         await Post.findByIdAndUpdate(comment.post, {
-            $inc: { commentCount: -1 }
+            $inc: { commentCount: -deleteCount }
         });
 
         res.redirect(`/post/${comment.post}`);
-    }
-    catch (err)
-    {
+    } catch (err) {
         console.error(err);
-        res.redirect("back");
+        res.redirect(`/post/${postId}`);
     }
-}
+};
 
 exports.editComment = async (req, res) =>
 {
@@ -85,7 +91,7 @@ exports.editComment = async (req, res) =>
 
         if (!comment)
         {
-            return res.redirect("back");
+            res.redirect(`/post/${postId}`);
         }
 
         // only author can edit
@@ -107,7 +113,7 @@ exports.editComment = async (req, res) =>
     catch (err)
     {
         console.error(err);
-        res.redirect("back");
+        res.redirect(`/post/${postId}`);
     }
 }
 
@@ -116,7 +122,7 @@ exports.renderEditComment = async (req, res) => {
         const comment = await Comment.findById(req.params.id);
 
         if (!comment) {
-            return res.redirect("back");
+            return res.redirect(`/post/${postId}`);
         }
 
         // only author can edit
@@ -127,6 +133,6 @@ exports.renderEditComment = async (req, res) => {
         res.render("edit-comment", { comment });
     } catch (err) {
         console.error(err);
-        res.redirect("back");
+        res.redirect(`/post/${postId}`);
     }
 };
