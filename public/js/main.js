@@ -16,45 +16,6 @@ if (logoutButton) {
     });
 }
 
-document.addEventListener("click", function(e)
-{
-    // Find post container
-    const postContainer = e.target.closest(".post");
-    if (!postContainer) return;
-
-    const likeBtn = postContainer.querySelector(".like-btn img");
-    const dislikeBtn = postContainer.querySelector(".dislike-btn img");
-
-    if (!likeBtn || !dislikeBtn) return;
-
-    // Like button
-    if (e.target.closest('.like-btn'))
-    {
-        // Reset dislike
-        dislikeBtn.src = "/images/thumbs-down.png";
-
-        // Toggle like
-        if (likeBtn.src.includes("thumbs-up.png")) {
-            likeBtn.src = "/images/blue-like.png";
-        } else {
-            likeBtn.src = "/images/thumbs-up.png";
-        }
-    }
-
-    // Dislike button
-    if (e.target.closest(".dislike-btn")) {
-        // Reset like
-        likeBtn.src = "/images/thumbs-up.png";
-
-        // Toggle dislike
-        if (dislikeBtn.src.includes("thumbs-down.png")) {
-            dislikeBtn.src = "/images/red-dislike.png";
-        } else {
-            dislikeBtn.src = "/images/thumbs-down.png";
-        }
-    }
-});
-
 // Image Preview for Create Post
 document.addEventListener("DOMContentLoaded", function(e) {
     const photoInput = document.getElementById("photo");
@@ -110,3 +71,50 @@ function clearAll() {
     url.searchParams.set('travelStyle', 'all');
     window.location = url;
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    const currentUser = document.body.dataset.userId || null;
+
+    document.querySelectorAll(".post").forEach(post => {
+        const postId = post.dataset.postId;
+
+        const likeBtn = post.querySelector(".like-btn img");
+        const dislikeBtn = post.querySelector(".dislike-btn img");
+
+        const upvotes = JSON.parse(post.dataset.upvotes || "[]");
+        const downvotes = JSON.parse(post.dataset.downvotes || "[]");
+
+        if (upvotes.includes(currentUser)) likeBtn.src = "/images/blue-like.png";
+        if (downvotes.includes(currentUser)) dislikeBtn.src = "/images/red-dislike.png";
+    });
+
+    document.querySelectorAll(".like-btn, .dislike-btn").forEach(btn => {
+        btn.addEventListener("click", async () => {
+            const postId = btn.dataset.postId;
+            const likeBtn = document.querySelector(`.like-btn[data-post-id="${postId}"] img`);
+            const dislikeBtn = document.querySelector(`.dislike-btn[data-post-id="${postId}"] img`);
+
+            if (!currentUser) {
+                alert("Log in to like or dislike posts");
+                return;
+            }
+
+            const isLike = btn.classList.contains("like-btn");
+            const endpoint = isLike ? `/post/${postId}/like` : `/post/${postId}/dislike`;
+
+            try {
+                const res = await fetch(endpoint, { method: "POST" });
+                const data = await res.json();
+
+                document.getElementById(`like-count-${postId}`).textContent = data.upvotes;
+                document.getElementById(`dislike-count-${postId}`).textContent = data.downvotes;
+
+                likeBtn.src = data.userLiked ? "/images/blue-like.png" : "/images/thumbs-up.png";
+                dislikeBtn.src = data.userDisliked ? "/images/red-dislike.png" : "/images/thumbs-down.png";
+
+            } catch (err) {
+                console.error(err);
+            }
+        });
+    });
+});
