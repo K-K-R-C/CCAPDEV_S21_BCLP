@@ -15,11 +15,14 @@ exports.createComment = async (req, res) =>
             return res.redirect(`/post/${req.params.id}`);
         }
 
+        const parentComment = req.body.parentComment || null;
+
         const comment = new Comment
         ({
             text: req.body.text.trim(),
             author: req.session.userId,
-            post: req.params.id
+            post: req.params.id,
+            parentComment: parentComment
         });
 
         await comment.save();

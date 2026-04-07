@@ -13,6 +13,7 @@ mongoose.connect("mongodb://127.0.0.1/gunitaph")
 
 app.engine("hbs", hbs.engine({
     extname: ".hbs",
+    partialsDir: path.join(__dirname, "views/partials"),
     allowProtoPropertiesByDefault: true,
     defaultLayout: false,
     allowProtoPropertiesByDefault: true,

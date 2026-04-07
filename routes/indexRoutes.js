@@ -38,7 +38,7 @@ router.post("/post/:id/edit", isAuthenticated, upload.array("photo", 5), postCon
 router.post("/post/:id/delete", isAuthenticated, postController.deletePost);
 
 // Comments
-router.get('/comment/:id/edit', commentController.renderEditComment);
+router.get('/comment/:id/edit', isAuthenticated, commentController.renderEditComment);
 router.post("/post/:id/comment", isAuthenticated, commentController.createComment);
 router.post("/comment/:commentId/delete", isAuthenticated, commentController.deleteComment);
 router.post("/comment/:commentId/edit", isAuthenticated, commentController.editComment);

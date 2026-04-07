@@ -297,10 +297,15 @@
 
 /* Actions row */
 .comment-actions {
-  margin-left: 44px;
-  margin-top: 6px;
-  display: flex;
-  gap: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.comment-actions form {
+    margin: 0;
 }
 
 .comment-link {
@@ -477,9 +482,16 @@
 
 .comment-header {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
+    align-items: flex-start;
     gap: 12px;
-    margin-bottom: 8px;
+}
+
+.comment-user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
 }
 
 .comment-date {

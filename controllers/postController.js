@@ -92,23 +92,45 @@ exports.getPost = async (req, res) => {
             });
         }
 
-        const comments = await Comment.find({ post: req.params.id })
+        const buildCommentTree = (comments) => {
+            const map = {};
+            const roots = [];
+
+            comments.forEach(comment => {
+                comment.replies = [];
+                map[comment._id] = comment;
+            });
+
+            comments.forEach(comment => {
+                if (comment.parentComment) {
+                    map[comment.parentComment]?.replies.push(comment);
+                } else {
+                    roots.push(comment);
+                }
+            });
+
+            return roots;
+        };
+
+        const allComments = await Comment.find({ post: req.params.id })
             .populate("author")
             .lean();
 
-        comments.forEach(comment => {
-            comment.isOwner =
-                res.locals.user &&
-                comment.author._id.toString() === res.locals.user._id.toString();
+        const comments = buildCommentTree(allComments);
 
-            if (comment.replies) {
-                comment.replies.forEach(reply => {
-                    reply.isOwner =
-                        res.locals.user &&
-                        reply.author._id.toString() === res.locals.user._id.toString();
-                });
-            }
-        });
+        const markOwnership = (comments, user) => {
+            comments.forEach(comment => {
+                comment.isOwner =
+                    user &&
+                    comment.author._id.toString() === user._id.toString();
+
+                if (comment.replies && comment.replies.length > 0) {
+                    markOwnership(comment.replies, user);
+                }
+            });
+        };
+
+        markOwnership(comments, res.locals.user);
 
         res.render("post", {
             post,

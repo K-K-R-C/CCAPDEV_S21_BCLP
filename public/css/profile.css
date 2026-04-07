@@ -238,6 +238,13 @@
   min-height: 80px;
 }
 
+.readonly-field {
+    background: #f3f3f3;
+    padding: 10px;
+    border-radius: 8px;
+    color: #555;
+}
+
 /* Form Actions (Buttons) */
 .form-actions {
   display: flex;
