@@ -17,7 +17,6 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1/gunitaph")
 app.engine("hbs", hbs.engine({
     extname: ".hbs",
     partialsDir: path.join(__dirname, "views/partials"),
-    allowProtoPropertiesByDefault: true,
     defaultLayout: false,
     allowProtoPropertiesByDefault: true,
     allowProtoMethodsByDefault: true,
@@ -29,11 +28,10 @@ app.engine("hbs", hbs.engine({
                 year: "2-digit"
             });
         },
-
-        eq: (a, b) => a === b //For radio button checked state
+        eq: (a, b) => a === b,
+        json: (context) => JSON.stringify(context)
     },
-    runtimeOptions:
-    {
+    runtimeOptions: {
         allowProtoPropertiesByDefault: true,
         allowProtoMethodsByDefault: true
     }
@@ -71,5 +69,5 @@ app.use("/", indexRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log('Server running on port ${PORT}');
 });
