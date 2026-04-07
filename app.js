@@ -8,6 +8,8 @@ require('dotenv').config(); // load .env
 
 const app = express();
 
+app.set("trust proxy", 1);
+
 mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1/gunitaph")
     .then(() => console.log("MongoDB connected"))
     .catch((err) => console.log("MongoDB connection error:", err));
