@@ -10,7 +10,7 @@
     <script src="/js/main.js" defer></script>
 </head>
 
-<body>
+<body data-user-id="{{user._id}}">
     <div class="container">  
 
         <!-- Left Sidebar -->
@@ -67,7 +67,10 @@
 
         <!-- Main Post Content -->
         <div class="single-post">  <!-- Opens .single-post -->
-            <div class="post detailed-post">  <!-- Opens .post -->
+            <div class="post detailed-post"
+                    data-post-id="{{post._id}}"
+                    data-upvotes='{{json post.upvotes}}'
+                    data-downvotes='{{json post.downvotes}}'>  <!-- Opens .post -->
                 <div class="post-header">
                     <div class="user">
                         <img src="{{post.author.profilePic}}" class="profile-pic" alt="Profile Pic">
@@ -108,15 +111,17 @@
 
                 <div class="post-footer">
                     <div class="interactions">
+                        <!-- LIKES -->
                         <button class="like-btn" data-post-id="{{post._id}}">
                             <img src="/images/thumbs-up.png" class="icon">
                         </button>
-                        <span class="counter">{{post.upvotes.length}}</span>
+                        <span class="counter" id="like-count-{{post._id}}">{{post.upvotes.length}}</span>
 
+                        <!-- DISLIKES -->
                         <button class="dislike-btn" data-post-id="{{post._id}}">
                             <img src="/images/thumbs-down.png" class="icon">
                         </button>
-                        <span class="counter">{{post.downvotes.length}}</span>
+                        <span class="counter" id="dislike-count-{{post._id}}">{{post.downvotes.length}}</span>
 
                         <img src="/images/comment.png" class="icon">
                         <span class="counter">{{post.commentCount}}</span>
