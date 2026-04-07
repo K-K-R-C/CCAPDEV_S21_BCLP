@@ -1,6 +1,6 @@
-const Post = require("../model/Post");
-const User = require("../model/User");
-const Comment = require("../model/Comment");
+const Post = require("../model/post");
+const User = require("../model/user");
+const Comment = require("../model/comment");
 
 // Helper function for destinations
 const getDestination = (location) => {
