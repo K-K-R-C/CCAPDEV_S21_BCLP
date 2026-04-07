@@ -7,7 +7,7 @@ const hbs = require("express-handlebars");
 
 const app = express();
 
-mongoose.connect("mongodb://127.0.0.1/gunitaph")
+mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1/gunitaph")
     .then(() => console.log("MongoDB connected"))
     .catch((err) => console.log("MongoDB connection error:", err));
 
@@ -46,9 +46,12 @@ app.use(express.json());
 
 // Session
 app.use(session({
-    secret: "gunita-secret",
+    secret: process.env.SESSION_SECRET || "gunita-secret",  // Fallback for local
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: { 
+        secure: process.env.NODE_ENV === 'production'  // HTTPS on Render
+    }
 }));
 
 // Middleware
@@ -63,6 +66,7 @@ app.use(async (req, res, next) => {
 // Routes
 app.use("/", indexRoutes);
 
-app.listen(3000, () => {
-    console.log("Server running on port 3000");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });

@@ -7,7 +7,7 @@ const Comment = require('./model/comment');
 const bcrypt = require('bcrypt');
 
 // Connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1/gunitaph')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1/gunitaph')
     .then(() => console.log('MongoDB connected for seeding'))
     .catch((err) => console.log('MongoDB connection error: ', err));
 
