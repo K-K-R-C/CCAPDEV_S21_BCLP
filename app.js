@@ -4,6 +4,7 @@ const path = require("path");
 const session = require("express-session");
 const indexRoutes = require("./routes/indexRoutes");
 const hbs = require("express-handlebars");
+require('dotenv').config(); // load .env
 
 const app = express();
 
