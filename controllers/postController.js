@@ -54,7 +54,13 @@ exports.getAllPosts = async (req, res) => {
                 day: "2-digit",
                 year: "2-digit"
             });
+
+            post.isEdited =
+                post.updatedAt &&
+                post.createdAt &&
+                new Date(post.updatedAt).getTime() > new Date(post.createdAt).getTime();
         });
+        
         res.render("index",
         {
             posts,
@@ -91,6 +97,11 @@ exports.getPost = async (req, res) => {
                 message: 'Post not found'
             });
         }
+
+        post.isEdited =
+            post.updatedAt &&
+            post.createdAt &&
+            new Date(post.updatedAt).getTime() > new Date(post.createdAt).getTime();
 
         const buildCommentTree = (comments) => {
             const map = {};
@@ -131,6 +142,21 @@ exports.getPost = async (req, res) => {
         };
 
         markOwnership(comments, res.locals.user);
+
+        const markEdited = (comments) => {
+            comments.forEach(comment => {
+                comment.isEdited =
+                    comment.updatedAt &&
+                    comment.createdAt &&
+                    new Date(comment.updatedAt).getTime() > new Date(comment.createdAt).getTime();
+
+                if (comment.replies && comment.replies.length > 0) {
+                    markEdited(comment.replies);
+                }
+            });
+        };
+
+        markEdited(comments);
 
         res.render("post", {
             post,
@@ -229,6 +255,11 @@ exports.getUserProfile = async (req, res) => {
                 day: "2-digit",
                 year: "2-digit"
             });
+
+            post.isEdited =
+                post.updatedAt &&
+                post.createdAt &&
+                new Date(post.updatedAt).getTime() > new Date(post.createdAt).getTime();
         });
 
         comments.forEach(comment =>
@@ -238,6 +269,11 @@ exports.getUserProfile = async (req, res) => {
                 day: "2-digit",
                 year: "2-digit"
             });
+
+            comment.isEdited =
+            comment.updatedAt &&
+            comment.createdAt &&
+            new Date(comment.updatedAt).getTime() > new Date(comment.createdAt).getTime();
         });
 
 
@@ -308,6 +344,8 @@ exports.editPost = async (req, res) => {
         if (req.files && req.files.length > 0) {
             post.images = req.files.map(file => `/uploads/${file.filename}`);
         }
+
+        post.updatedAt = new Date();
 
         await post.save();
         res.redirect(`/post/${post._id}`);

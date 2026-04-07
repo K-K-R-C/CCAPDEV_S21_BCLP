@@ -116,7 +116,10 @@
                         <img src="{{this.author.profilePic}}" class="profile-pic" alt="Profile Pic">
                         <p>{{this.author.username}}</p>
                     </div>
-                    <span class="post-date">{{formatDate this.createdAt}}</span>
+                    <span class="post-date">
+                        {{formatDate this.createdAt}}
+                        {{#if this.isEdited}}• edited{{/if}}
+                    </span>
                 </div>
 
                 <div class="post-images">
@@ -168,7 +171,10 @@
                   On: <strong>{{this.post.title}}</strong> 
                   by <span class="comment-author">@{{this.author.username}}</span>
                 </div>
-                <span class="comment-time">{{formatDate this.createdAt}}</span>
+                <span class="comment-time">
+                  {{formatDate this.createdAt}}
+                  {{#if this.isEdited}}• edited{{/if}}
+                </span>
               </div>
               <p class="comment-text">
                 {{this.text}}

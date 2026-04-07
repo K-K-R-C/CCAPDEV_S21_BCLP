@@ -94,6 +94,11 @@ exports.editComment = async (req, res) =>
             return res.status(403).send("Unauthorized");
         }
 
+        if (!text)
+        {
+            return res.redirect(`/post/${comment.post}`);
+        }
+
         comment.text = text.trim();
         await comment.save();
 

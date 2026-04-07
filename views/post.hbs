@@ -75,7 +75,10 @@
                             <p>{{post.author.username}}</p>
                         </a>
                     </div>
-                    <span class="post-date">{{formatDate post.createdAt}}</span>
+                    <span class="post-date">
+                        {{formatDate post.createdAt}}
+                        {{#if post.isEdited}}• edited{{/if}}
+                    </span>
                 </div>
 
                 <div class="post-images">

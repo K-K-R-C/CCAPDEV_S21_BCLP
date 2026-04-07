@@ -4,7 +4,10 @@
             <img src="{{this.author.profilePic}}" class="profile-pic-small">
             <div>
                 <strong><a href="/user/{{this.author.username}}">{{this.author.username}}</a></strong>
-                <span class="comment-date">{{formatDate this.createdAt}}</span>
+                <span class="comment-date">
+                    {{formatDate this.createdAt}}
+                    {{#if this.isEdited}}• edited{{/if}}
+                </span>
             </div>
         </div>
 

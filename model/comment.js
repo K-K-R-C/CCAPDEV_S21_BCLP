@@ -41,11 +41,8 @@ const CommentSchema = new mongoose.Schema
         ref: 'User'
     }], 
 
-    createdAt:
-    {
-        type: Date, 
-        default: Date.now
-    }
+}, {
+    timestamps: true
 });
 
 module.exports = mongoose.model('Comment', CommentSchema)

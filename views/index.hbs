@@ -77,7 +77,10 @@
                             <p>{{this.author.username}}</p>
                         </a>
                     </div>
-                    <span class="post-date">{{formatDate this.createdAt}}</span>
+                    <span class="post-date">
+                        {{formatDate this.createdAt}}
+                        {{#if this.isEdited}}• edited{{/if}}
+                    </span>
                 </div>
 
                 <!-- Clickable post card that leads to post.html -->
