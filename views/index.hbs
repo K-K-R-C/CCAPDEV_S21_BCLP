@@ -9,7 +9,7 @@
     <script src="/js/main.js" defer></script>
   </head>
 
-  <body>
+  <body data-user-id="{{user._id}}">
     <div class="container">
 
         <!-- Left Sidebar -->
@@ -81,7 +81,10 @@
 
             <!-- Loop through posts passed from Controller -->
             {{#each posts}}
-            <div class="post">
+            <div class="post" 
+                data-post-id="{{this._id}}"
+                data-upvotes='{{json this.upvotes}}'
+                data-downvotes='{{json this.downvotes}}'>
                 <div class="post-header">
                     <div class="user">
                         <img src="{{this.author.profilePic}}" class="profile-pic">
@@ -116,13 +119,13 @@
                         <button class="like-btn" data-post-id="{{this._id}}">
                             <img src="/images/thumbs-up.png" class="icon">
                         </button>
-                        <span class="counter">{{this.upvotes.length}}</span>
+                        <span class="counter" id="like-count-{{this._id}}">{{this.upvotes.length}}</span>
 
                         <!-- Dislikes Counter -->
                         <button class="dislike-btn" data-post-id="{{this._id}}">
                             <img src="/images/thumbs-down.png" class="icon">
                         </button>
-                        <span class="counter">{{this.downvotes.length}}</span>
+                        <span class="counter" id="dislike-count-{{this._id}}">{{this.downvotes.length}}</span>
 
                         <!-- Comments -->
                         <img src="/images/comment.png" class="icon">
