@@ -58,7 +58,7 @@ app.use(session({
 // Middleware
 app.use(async (req, res, next) => {
     if (req.session.userId) {
-        const User = require("../model/user");
+        const User = require("./model/user");
         res.locals.user = await User.findById(req.session.userId);
     }
     next();
