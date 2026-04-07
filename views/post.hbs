@@ -162,57 +162,7 @@
                 </div> <!-- Closes .comments -->
             </div>  <!-- Closes .post -->
         </div>  <!-- Closes .single-post -->
-
-        <!-- Right Sidebar -->
-        <div class="right-sidebar">
-            <!-- Search Bar -->
-            <div class="searchbar">
-                <form method = "GET" id = "searchForm">
-                    <img src="/images/search-icon.png" alt="Search" class="search-icon">
-                    <input type="text" name ="search" placeholder="Search posts..." value="{{filters.search}}">
-                    <button type="submit" style="display:none;"></button>
-                </form>
-            </div>
-
-            <!-- Trending Section -->
-            <div class="trending">
-                <h3>Top 3 Trending</h3>
-                <ul>
-                    <li>#EntitledForeigners</li>
-                    <li>#ValentinesDay</li>
-                    <li>#HappySinglesDay</li>
-                </ul>
-            </div>
-
-            <!-- Filters Section -->
-            <div class="filters">
-                <h3>Destination</h3>
-
-                <form method="GET" id="filterForm">
-                    <input type="hidden" name="search" value="{{filters.search}}">
-
-                    <div class="filter-list">
-                        <label><input type="radio" name="destination" value="all" {{#if (eq filters.destination 'all')}}checked{{/if}}> All</label>
-                        <label><input type="radio" name="destination" value="Luzon" {{#if (eq filters.destination 'Luzon')}}checked{{/if}}> Luzon</label>
-                        <label><input type="radio" name="destination" value="Visayas" {{#if (eq filters.destination 'Visayas')}}checked{{/if}}> Visayas</label>
-                        <label><input type="radio" name="destination" value="Mindanao" {{#if (eq filters.destination 'Mindanao')}}checked{{/if}}> Mindanao</label>
-                    </div>
-
-                    <h3 class="section-gap">Travel Style</h3>
-                    <div class="filter-list">
-                        <label><input type="radio" name="travelStyle" value="all" {{#if (eq filters.travelStyle 'all')}}checked{{/if}}> All</label>
-                        <label><input type="radio" name="travelStyle" value="Budget" {{#if (eq filters.travelStyle 'Budget')}}checked{{/if}}> Budget</label>
-                        <label><input type="radio" name="travelStyle" value="Family" {{#if (eq filters.travelStyle 'Family')}}checked{{/if}}> Family</label>
-                        <label><input type="radio" name="travelStyle" value="Backpacking" {{#if (eq filters.travelStyle 'Backpacking')}}checked{{/if}}> Backpacking</label>
-                        <label><input type="radio" name="travelStyle" value="Luxury" {{#if (eq filters.travelStyle 'Luxury')}}checked{{/if}}> Luxury</label>
-                        <label><input type="radio" name="travelStyle" value="Solo" {{#if (eq filters.travelStyle 'Solo')}}checked{{/if}}> Solo</label>
-                    </div>
-
-                    <button type="submit">Apply Filters</button>
-                    <button type="button" class="clear-btn" onclick="clearAll()">Clear All</button>
-                </form>
-            </div>
-        </div>
+        
     </div>  <!-- Closes .container -->
 </body>
 </html>
