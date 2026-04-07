@@ -19,6 +19,9 @@ function isAuthenticated(req, res, next)
 
 // Create and Get Posts
 router.get("/", postController.getAllPosts);
+router.get("/about", (req, res) => {
+    res.render("about");
+});
 router.get("/post/:id", postController.getPost);
 router.get("/create-post", isAuthenticated, postController.showCreatePost);
 router.post("/posts", isAuthenticated, upload.array("photo", 5), postController.createPost);
