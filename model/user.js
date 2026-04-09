@@ -10,10 +10,11 @@ const UserSchema = new mongoose.Schema
         trim: true
     },
 
-    handle:
+    displayname:
     {
-        type: String, 
-        default: ''
+        type: String,
+        required: true,
+        trim: true
     },
 
     password:
@@ -65,4 +66,4 @@ const UserSchema = new mongoose.Schema
     }
 });
 
-module.exports = mongoose.models.User || mongoose.model("User", UserSchema);
+module.exports = mongoose.model("User", UserSchema);

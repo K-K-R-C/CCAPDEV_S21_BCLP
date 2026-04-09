@@ -23,8 +23,8 @@
             </div>
 
             <img src="{{user.profilePic}}" class="profile-pic" alt="Profile Pic">
-            <h2><a href="/user/{{user.username}}" class="profile-link">{{user.username}}</a></h2>
-            <p>@{{user.handle}}</p>
+            <h2><a href="/user/{{user.username}}" class="profile-link">{{user.displayname}}</a></h2>
+            <p>@{{user.username}}</p>
 
             <button>
                 <a href="/" class="sidebar-btn">
@@ -77,8 +77,8 @@
                 </a>
 
                 <div class="profile-meta">
-                  <h2 class="profile-name">{{profile.username}}</h2>
-                  <p class="profile-handle">@{{profile.handle}}</p>
+                  <h2 class="profile-name">{{profile.displayname}}</h2>
+                  <p class="profile-handle">@{{profile.username}}</p>
                   <p class="profile-location">{{profile.location}}</p>
 
                   <p class="bio">

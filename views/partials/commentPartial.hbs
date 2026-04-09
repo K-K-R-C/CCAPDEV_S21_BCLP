@@ -3,7 +3,7 @@
         <div class="comment-user-info">
             <img src="{{this.author.profilePic}}" class="profile-pic-small">
             <div>
-                <strong><a href="/user/{{this.author.username}}">{{this.author.username}}</a></strong>
+                <strong><a href="/user/{{this.author.username}}">{{this.author.displayname}}</a></strong>
                 <span class="comment-date">
                     {{formatDate this.createdAt}}
                     {{#if this.isEdited}}• edited{{/if}}

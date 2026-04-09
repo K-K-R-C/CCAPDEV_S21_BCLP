@@ -16,7 +16,7 @@ exports.showEditProfile = async (req, res) => {
 
 exports.editProfile = async (req, res) => {
     try {
-        const { username, bio, location } = req.body;
+        const { displayname, bio, location } = req.body;
 
         const currentUser = await User.findById(req.session.userId).lean();
         if (!currentUser) return res.redirect("/login");
@@ -35,13 +35,13 @@ exports.editProfile = async (req, res) => {
 
         const updatedUser = await User.findByIdAndUpdate(
             req.session.userId,
-            { username, bio, location, profilePic, coverPic },
+            { displayname, bio, location, profilePic, coverPic },
             { returnDocument: 'after', runValidators: true }
         ).lean();
 
         req.session.user = updatedUser;
 
-        res.redirect(`/user/${username}`);
+        res.redirect(`/user/${updatedUser.username}`);
     } catch (err) {
         console.error(err);
         res.redirect("/edit-profile");
@@ -89,7 +89,7 @@ exports.register = async (req, res) => {
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = new User({ username: trimmedUsername, handle: trimmedUsername, password: hashedPassword });
+        const user = new User({ username: trimmedUsername, dislpayname: trimmedUsername, password: hashedPassword });
         await user.save();
 
         req.session.userId = user._id;

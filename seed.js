@@ -26,7 +26,7 @@ const seedData = async () =>
         const batmeow = await new User
         ({
             username: 'batmeow',
-            handle: 'dlsu-pusa',
+            displayname: 'Bat Meow',
             password: await bcrypt.hash('trestres123', 10),
             bio: 'Meow meow meow meow meow meow meow',
             location: 'Manila, Philippines',
@@ -39,7 +39,7 @@ const seedData = async () =>
         const kaloy = await new User
         ({
             username: 'kaloy',
-            handle: 'yolakay',
+            displayname: 'KALOY56XD:-)',
             password: await bcrypt.hash('karlkarl123', 10),
             bio: 'YOLO',
             location: 'Cebu, Philippines',
@@ -52,7 +52,7 @@ const seedData = async () =>
         const ventilogz = await new User
         ({
             username: 'ventilogz',
-            handle: 'travelMaster',
+            displayname: 'Venti Logz',
             password: await bcrypt.hash('ventvent123', 10),
             bio: 'Travel lover 🌴 Always planning the next family trip.',
             location: 'Cebu, Philippines',
@@ -65,7 +65,7 @@ const seedData = async () =>
         const ophiuche = await new User
         ({
             username: 'ophiuche',
-            handle: 'serEndip!ty',
+            displayname: 'serEndip!ty',
             password: await bcrypt.hash('ophiophi123', 10),
             bio: 'Hiking + sunrise pics 🌄 Always chasing fresh air and mountain views.',
             location: 'Benguet, Philippines',
@@ -78,7 +78,7 @@ const seedData = async () =>
         const monami = await new User
         ({
             username: 'monami',
-            handle: 'minomikami',
+            displayname: 'minomikami',
             password: await bcrypt.hash('monamona123', 10),
             bio: 'Coffee lover ☕ | Slow mornings & scenic views 🌄',
             location: 'Tagaytay, Philippines',

@@ -22,8 +22,8 @@
           </div>
 
           <img src="{{user.profilePic}}" class="profile-pic" alt="Profile Pic">
-          <h2><a href="/user/{{user.username}}" class="profile-link">{{user.username}}</a></h2>
-          <p>@{{user.handle}}</p>
+          <h2><a href="/user/{{user.username}}" class="profile-link">{{user.displayname}}</a></h2>
+          <p>@{{user.username}}</p>
 
           <button>
               <a href="/" class="sidebar-btn">
@@ -78,11 +78,11 @@
                 </div>
 
                 <!-- Other fields -->
-                <label for="username">Name</label>
-                <input type="text" id="username" name="username" value="{{user.username}}" required>
+                <label for="displayname">Display Name</label>
+                <input type="text" id="displayname" name="displayname" value="{{user.displayname}}" required>
 
-                <label for="handle">Username</label>
-                <p class="readonly-field">{{user.handle}}</p>
+                <label>Username</label>
+                <p class="readonly-field">{{user.username}}</p>
 
                 <label for="bio">Bio</label>
                 <textarea id="bio" name="bio" rows="3">{{user.bio}}</textarea>
@@ -98,45 +98,6 @@
         </div>
 
       </section>
-
-      <!-- RIGHT SIDEBAR -->
-      <div class="right-sidebar">
-          <div class="searchbar">
-              <form>
-                  <img src="/images/search-icon.png" alt="Search" class="search-icon">
-                  <input type="text" placeholder="Search...">
-              </form>
-          </div>
-
-          <div class="trending">
-              <h3>Top 3 Trending</h3>
-              <ul>
-                  <li>#EntitledForeigners</li>
-                  <li>#ValentinesDay</li>
-                  <li>#HappySinglesDay</li>
-              </ul>
-          </div>
-
-          <div class="card filters">
-              <h3>Destination</h3>
-              <div class="filter-list">
-                <label><input type="checkbox" checked> Luzon</label>
-                <label><input type="checkbox"> Visayas</label>
-                <label><input type="checkbox"> Mindanao</label>
-              </div>
-
-              <h3 class="section-gap">Travel Style</h3>
-              <div class="filter-list">
-                <label><input type="checkbox" checked> Budget</label>
-                <label><input type="checkbox"> Family</label>
-                <label><input type="checkbox"> Backpacking</label>
-                <label><input type="checkbox"> Luxury</label>
-                <label><input type="checkbox"> Solo</label>
-              </div>
-
-              <button>Set Filters</button>
-          </div>
-      </div>
 
     </div>
   </body>
