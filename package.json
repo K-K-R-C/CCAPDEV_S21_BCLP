@@ -25,6 +25,7 @@
   "homepage": "https://github.com/K-K-R-C/CCAPDEV_S21_BCLP#readme",
   "dependencies": {
     "bcrypt": "^6.0.0",
+    "connect-mongo": "^4.6.0",
     "dotenv": "^17.4.1",
     "express": "^5.2.1",
     "express-handlebars": "^8.0.6",
@@ -32,6 +33,5 @@
     "hbs": "^4.2.0",
     "mongoose": "^9.2.4",
     "multer": "^2.1.1"
-  },
-  "devDependencies": {}
+  }
 }

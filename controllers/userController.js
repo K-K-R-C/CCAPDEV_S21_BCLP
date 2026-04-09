@@ -127,7 +127,17 @@ exports.login = async (req, res) => {
             return res.render("login", { error: "Wrong password!" });
         }
 
+        if (req.body.rememberMe === 'on') {
+            req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 21;  // 3 weeks from login
+        }
+        else
+        {
+            req.session.cookie.maxAge = null;
+            req.session.cookie.expires = undefined;
+        }
+
         req.session.userId = user._id;
+
         res.redirect("/");
     } catch (err) {
         console.error(err);

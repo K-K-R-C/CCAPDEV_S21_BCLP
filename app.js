@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const session = require("express-session");
+const mongoStore = require("connect-mongo");
 const indexRoutes = require("./routes/indexRoutes");
 const hbs = require("express-handlebars");
 require('dotenv').config(); // load .env
@@ -50,8 +51,15 @@ app.use(session({
     secret: process.env.SESSION_SECRET || "gunita-secret",  // Fallback for local
     resave: false,
     saveUninitialized: false,
+    rolling: false,
+    store: mongoStore.create({
+        mongoUrl: process.env.MONGODB_URI,
+        collectionName: 'sessions'
+    }),
     cookie: { 
-        secure: process.env.NODE_ENV === 'production'  // HTTPS on Render
+        secure: process.env.NODE_ENV === 'production',  // HTTPS on Render
+        httpOnly: true,
+        maxAge: null
     }
 }));
 
@@ -69,5 +77,5 @@ app.use("/", indexRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log('Server running on port ${PORT}');
+    console.log(`Server running on port ${PORT}`);
 });

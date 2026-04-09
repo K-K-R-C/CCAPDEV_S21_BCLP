@@ -3,10 +3,13 @@
 A forum-style web application focused on Philippine travel experiences.
 
 ## Features
-- View posts
-- Create post (U.I.)
+- View/filter/search posts
+- Create/edit/delete posts (U.I.)
+- Nested comments + replies
 - User profiles
 - Login/Register pages
+- Remember Me (3-week persistent sessions)
+- Profile editing
 
 ## Languages used
 - HTML
@@ -137,22 +140,23 @@ CCAPDEV_S21_BCLP/
 ---
 
 ## NPM Packages Used
-| Package              | Purpose                               |
-|----------------------|---------------------------------------|
-| `express`            | Web framework and routing             |
-| `mongoose`           | MongoDB object modeling               |
-| `express-handlebars` | Templating engine                     |
-| `express-session`    | User session management               |
-| `connect-mongo`      | Persistent session storage in MongoDB |
-| `bcrypt`             | Password hashing                      |
-| `multer`             | File/image upload handling            |
-| `dotenv`             | Loading environment variables         |
+| Package                 | Purpose                               |
+|-------------------------|---------------------------------------|
+| `express`               | Web framework and routing             |
+| `mongoose`              | MongoDB object modeling               |
+| `express-handlebars`    | Templating engine                     |
+| `express-session`       | User session management               |
+| `connect-mongo (4.6.0)` | Persistent session storage in MongoDB |
+| `bcrypt`                | Password hashing                      |
+| `multer`                | File/image upload handling            |
+| `dotenv`                | Loading environment variables         |
 
 ---
 
 ## Full Feature List
 - Register and log in with hashed passwords
-- Persistent login sessions (stay logged in across page refreshes)
+- Remember Me -> 3-week sessions (extends on login)
+- Persistent login sessions survive server restarts (stay logged in if remembered)
 - Create, edit, and delete travel posts with image uploads
 - Nested comment and reply system
 - User profiles showing posts and recent comments
