@@ -89,7 +89,7 @@ exports.register = async (req, res) => {
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = new User({ username: trimmedUsername, dislpayname: trimmedUsername, password: hashedPassword });
+        const user = new User({ username: trimmedUsername, displayname: trimmedUsername, password: hashedPassword });
         await user.save();
 
         req.session.userId = user._id;
